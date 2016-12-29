@@ -1,5 +1,7 @@
 <?php
 
+use Illuminate\Http\Request;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,6 +13,16 @@
 |
 */
 
+/** Telegram WebHook **/
+Route::post('hook/'.env('TELEGRAM_APIKEY'), function(Request $req) {
+    //$json = escapeshellarg($req->getContent());
+    //exec("nohup php artisan telegram:bot $json > /dev/null 2>&1 &");
+    $json = $req->getContent();
+    header('HTTP/1.1 200 OK'); Artisan::call('telegram:bot', ['json' => $json]);
+});
+
+
 Route::get('/', function () {
     return view('welcome');
 });
+
