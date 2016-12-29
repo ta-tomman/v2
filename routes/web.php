@@ -15,10 +15,13 @@ use Illuminate\Http\Request;
 
 /** Telegram WebHook **/
 Route::post('hook/'.env('TELEGRAM_APIKEY'), function(Request $req) {
-    //$json = escapeshellarg($req->getContent());
-    //exec("nohup php artisan telegram:bot $json > /dev/null 2>&1 &");
-    $json = $req->getContent();
-    header('HTTP/1.1 200 OK'); Artisan::call('telegram:bot', ['json' => $json]);
+    // shell parameter have to be in single line
+    $input = str_replace("\n", '', $req->getContent());
+    $payload = escapeshellarg($input);
+
+    // working directory is <approot>/public, while artisan is in <approot>
+    $cmd = "nohup php ../artisan telegram:bot $payload > /dev/null 2>&1 &";
+    exec($cmd);
 });
 
 
