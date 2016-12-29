@@ -8,4 +8,4 @@ $token = array_slice($this->token, 2);
 $req->message->text = implode(' ', $token);
 $json = json_encode($req);
 
-exec('nohup curl -k -H "Host: debug.v2.tomman.info" -H "Content-Type: application/json" -X POST -d \''.$json.'\' '.$url);
+exec('nohup curl -k -H "Host: debug.v2.tomman.info" -H "Content-Type: application/json" -X POST -d \''.$json.'\' '.$url.' > /dev/null 2>&1 &');
