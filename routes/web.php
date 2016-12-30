@@ -14,16 +14,7 @@ use Illuminate\Http\Request;
 */
 
 /** Telegram WebHook **/
-Route::post('hook/'.env('TELEGRAM_APIKEY'), function(Request $req) {
-    // shell parameter have to be in single line
-    $input = str_replace("\n", '', $req->getContent());
-    $payload = escapeshellarg($input);
-
-    // spawn a background process so telegram webhook request can end early
-    // working directory is <approot>/public, while artisan is in <approot>
-    $cmd = "nohup php ../artisan telegram:bot $payload > /dev/null 2>&1 &";
-    exec($cmd);
-});
+Route::post('hook/'.env('TELEGRAM_BOT_TOKEN'), function() { Telegram::commandsHandler(true); });
 
 
 Route::get('/', function () {

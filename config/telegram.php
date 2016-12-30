@@ -1,5 +1,7 @@
 <?php
 
+use App\Telegram as Bot;
+
 return [
     /*
     |--------------------------------------------------------------------------
@@ -56,6 +58,9 @@ return [
     |
     */
     'commands' => [
-        Telegram\Bot\Commands\HelpCommand::class,
+        //Telegram\Bot\Commands\HelpCommand::class,
+        Bot\HelpCommand::class,
+        Bot\ChatIdCommand::class,
+        Bot\DebugCommand::class,
     ],
 ];
