@@ -51,7 +51,7 @@ class TelegramBot extends Command
     {
         parent::__construct();
 
-        $this->api = new Api(env('TELEGRAM_APIKEY'));
+        $this->api = new Api(env('TELEGRAM_BOT_TOKEN'));
     }
 
     /**
@@ -87,8 +87,8 @@ class TelegramBot extends Command
     /**
      * Reply to message specified in $this->request
      *
-     * @param text message to send
-     * @param mode telegram parse mode ('Markdown', 'HTML')
+     * @param text string message to send
+     * @param mode string telegram parse mode ('Markdown', 'HTML')
      */
     protected function reply($text, $mode = false)
     {
@@ -107,8 +107,8 @@ class TelegramBot extends Command
      * Reply to message specified in $this->request
      * by sending an image
      *
-     * @param imgPath valid path to existing image
-     * @param $text included caption
+     * @param imgPath string valid path to existing image
+     * @param text string included caption
      */
     protected function replyWithImage($imgPath, $text = false)
     {}

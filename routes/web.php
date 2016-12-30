@@ -19,6 +19,7 @@ Route::post('hook/'.env('TELEGRAM_APIKEY'), function(Request $req) {
     $input = str_replace("\n", '', $req->getContent());
     $payload = escapeshellarg($input);
 
+    // spawn a background process so telegram webhook request can end early
     // working directory is <approot>/public, while artisan is in <approot>
     $cmd = "nohup php ../artisan telegram:bot $payload > /dev/null 2>&1 &";
     exec($cmd);
