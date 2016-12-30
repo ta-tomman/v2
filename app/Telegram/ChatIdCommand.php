@@ -2,7 +2,6 @@
 
 namespace App\Telegram;
 
-use Telegram\Bot\Actions;
 use Telegram\Bot\Commands\Command;
 
 class ChatIdCommand extends Command
