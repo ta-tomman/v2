@@ -62,5 +62,6 @@ return [
         Bot\HelpCommand::class,
         Bot\ChatIdCommand::class,
         Bot\DebugCommand::class,
+        Bot\IpaymentCommand::class,
     ],
 ];
