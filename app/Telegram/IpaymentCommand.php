@@ -11,18 +11,18 @@ class IpaymentCommand extends CommandBase
 
     public function handle($param)
     {
-        $jastel = trim($param);
-
-        // numeric only
-        /*if (!preg_match('^[0-9]+$', $jastel)) {
+        try {
+            $jastel = trim($param);
+            $result = Ipayment::request($jastel);
+        }
+        // error handling
+        catch (\InvalidArgumentException $e) {
             $this->replyWithMessage([
-                'text' => 'silahkan input nomor jastel, misal:\n`/ipayment 051112345`\n`/ipayment 161123154654`',
+                'text' => "silahkan input nomor jastel, misal:\n`/ipayment 051112345`\n`/ipayment 161123154654`",
                 'parse_mode' => 'Markdown'
             ]);
+        }
 
-            return;
-        }*/
-
-        $result = Ipayment::request($jastel);
+        // TODO: process $result into view
     }
 }

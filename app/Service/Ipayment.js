@@ -33,6 +33,7 @@ if (!numberOnly.test(jastel)) {
 
 const browser = new Chromium();
 const run = Promise.coroutine(function* () {
+  // build query string
   var param = QS.stringify({
     phone: jastel,
     via: ['DWH', 'TREMS'],
@@ -44,6 +45,7 @@ const run = Promise.coroutine(function* () {
 
   yield browser.open(URL + '?' + param);
 
+  // grab data using jquery
   var data = yield browser.evaluate(function () {
     var result;
 
