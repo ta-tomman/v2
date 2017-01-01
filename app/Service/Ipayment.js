@@ -2,14 +2,14 @@
 
 process.on('unhandledRejection', e => {
   console.log('{"error":"UnhandledRejection"}');
-  console.log(require('util').inspect(e));
 });
 
 const Chromium = require('node-horseman');
 const Promise = require('bluebird'); //Promise object
 const QS = require('querystring');
 
-const URL = 'http://i-payment.telkom.co.id/script/intag_search_trems.php';
+// const URL = 'http://i-payment.telkom.co.id/script/intag_search_trems.php';
+const URL = 'http://10.60.165.60/script/intag_search_trems.php';
 const REQUESTER = {
   name: 'Hadi Susilo',
   addr: 'Banjarmasin',
@@ -34,9 +34,6 @@ if (!numberOnly.test(jastel)) {
 }
 
 const browser = new Chromium();
-browser.on('error', (msg, trace) => {
-  console.log('BROWSER.ERROR', msg, trace);
-})
 const run = Promise.coroutine(function* () {
   var param = QS.stringify({
     phone: jastel,
@@ -46,9 +43,9 @@ const run = Promise.coroutine(function* () {
     raddr: REQUESTER.addr,
     rphone: REQUESTER.phone
   });
-  console.info(param);
 
   yield browser.open(URL + '?' + param);
+  // yield browser.open('http://10.60.165.60');
 
   var data = yield browser.evaluate(function () {
     var result;
