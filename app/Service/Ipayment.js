@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-
 process.on('unhandledRejection', e => {
   console.log('{"error":"UnhandledRejection"}');
 });
@@ -45,33 +43,76 @@ const run = Promise.coroutine(function* () {
   });
 
   yield browser.open(URL + '?' + param);
-  // yield browser.open('http://10.60.165.60');
 
   var data = yield browser.evaluate(function () {
     var result;
 
     var infoEl = $('body > table:nth-child(2) > tbody');
     result = {
-      nama: $('tr:nth-child(1) > td', infoEl).text(),
-      produk: $('tr:nth-child(2) > td', infoEl).text(),
-      phone: $('tr:nth-child(3) > td', infoEl).text(),
-      internet: $('tr:nth-child(4) > td', infoEl).text(),
-      groupId: $('tr:nth-child(5) > td', infoEl).text()
+      nama: $('tr:nth-child(1) > td.value', infoEl).text(),
+      produk: $('tr:nth-child(2) > td.value', infoEl).text(),
+      phone: $('tr:nth-child(3) > td.value', infoEl).text(),
+      internet: $('tr:nth-child(4) > td.value', infoEl).text(),
+      groupId: $('tr:nth-child(5) > td.value', infoEl).text()
     };
+
+    var history = [];
+    var historyEl = $('body > table:nth-child(4) > tbody > tr');
+    historyEl.each(function(i, tr) {
+      //skip first entry (th row)
+      if (i == 0) return;
+
+      //baris genap: history entry
+      if (i % 2) {
+        var h = {
+          periode: $('td:nth-child(2)', tr).text(),
+          mataUang: $('td:nth-child(3)', tr).text(),
+          tagihan: $('td:nth-child(4)', tr).text(),
+          belumBayar: $('td:nth-child(5)', tr).text(),
+          statusBayar: $('td:nth-child(6)', tr).text(),
+          lokasiBayar: $('td:nth-child(7)', tr).text(),
+          cicilan: $('td:nth-child(8)', tr).text(),
+          tanggal: $('td:nth-child(9)', tr).text(),
+          jam: $('td:nth-child(10)', tr).text()
+        };
+        history.push(h);
+      }
+      //baris ganjil: history detail
+      else {
+        var d = [];
+
+        var detailEl = $('table tr', tr);
+        detailEl.each(function(i, row) {
+          // skip first entry (th row)
+          if (i == 0) return;
+
+          d.push({
+            layanan: $('td:nth-child(1)', row).text(),
+            mataUang: $('td:nth-child(2)', row).text(),
+            tagihan: $('td:nth-child(3)', row).text(),
+            statusBayar: $('td:nth-child(4)', row).text(),
+            lokasiBayar: $('td:nth-child(5)', row).text()
+          });
+        });
+
+        history[i-2].detail = d;
+      }
+    });
+    result.history = history;
 
     return result;
   });
 
+  // primary output
   console.log(JSON.stringify(data));
-
 });
 
 run()
   .catch(e => {
-    console.log('CATCH', require('util').inspect(e));
-    /*console.log(JSON.stringify({
-      error: e
-    }))*/
+    console.log(JSON.stringify({
+      error: 'RequestFailed',
+      trace: e
+    }))
   })
   .finally(function() {
     browser.close();
