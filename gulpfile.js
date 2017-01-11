@@ -12,8 +12,12 @@ require('laravel-elixir-vue-2');
  | file for our application, as well as publishing vendor resources.
  |
  */
-
+const jgSource = './resources/';
+const jgWatch = [`${jgSource}/*`, `${jgSource}/**/*`, `!${jgSource}/*`];
 elixir(mix => {
-    mix.sass('app.scss')
-       .webpack('app.js');
+    mix
+        .exec('jigsaw build test', jgWatch)
+        //.sass('app.scss')
+        //.webpack('app.js');
+    ;
 });
