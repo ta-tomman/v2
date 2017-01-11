@@ -97,7 +97,7 @@ const run = Promise.coroutine(function* () {
           });
         });
 
-        history[i-2].detail = d;
+        history[history.length - 1].detail = d;
       }
     });
     result.history = history;
