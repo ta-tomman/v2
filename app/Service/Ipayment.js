@@ -6,8 +6,8 @@ const Chromium = require('node-horseman');
 const Promise = require('bluebird'); //Promise object
 const QS = require('querystring');
 
-// const URL = 'http://i-payment.telkom.co.id/script/intag_search_trems.php';
-const URL = 'http://10.60.165.60/script/intag_search_trems.php';
+const URL = 'http://i-payment.telkom.co.id/script/intag_search_trems.php';
+// const URL = 'http://10.60.165.60/script/intag_search_trems.php';
 const REQUESTER = {
   name: 'Hadi Susilo',
   addr: 'Banjarmasin',
@@ -31,7 +31,11 @@ if (!numberOnly.test(jastel)) {
   process.exit();
 }
 
-const browser = new Chromium();
+const browser = new Chromium({
+  // skip images for faster loading
+  loadImages: false
+});
+
 const run = Promise.coroutine(function* () {
   // build query string
   var param = QS.stringify({

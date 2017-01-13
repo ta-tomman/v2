@@ -15,4 +15,13 @@ abstract class CommandBase extends Command
 
         parent::replyWithMessage($param);
     }
+
+    public function renderView()
+    {}
+
+    public function renderImage()
+    {}
+
+    public function renderImageFromView()
+    {}
 }

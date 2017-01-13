@@ -14,6 +14,8 @@ class IpaymentCommand extends CommandBase
         try {
             $jastel = trim($param);
             $result = Ipayment::request($jastel);
+
+            // TODO: process $result into view
         }
         // error handling
         catch (\InvalidArgumentException $e) {
@@ -22,7 +24,10 @@ class IpaymentCommand extends CommandBase
                 'parse_mode' => 'Markdown'
             ]);
         }
-
-        // TODO: process $result into view
+        catch (\RuntimeException $e) {
+            $this->replyWithMessage([
+                'text' => 'Sambungan ke I-Payment GAGAL'
+            ]);
+        }
     }
 }

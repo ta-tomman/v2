@@ -14,6 +14,11 @@ class Ipayment
             case 'InvalidArgument':
                 throw new \InvalidArgumentException();
             break;
+
+            case 'RequestFailed':
+            case 'UnhandledRejection':
+                throw new \RuntimeException($result);
+            break;
         }
 
         return $result;
