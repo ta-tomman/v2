@@ -28,7 +28,13 @@ class DebugCommand extends CommandBase
             $update->message->text = $arg;
             $json = json_encode($update);
 
-            $cmd = 'nohup curl -k -H "Host: ' . $host . '" -H "Content-Type: application/json" -X POST -d \'' . $json . '\' ' . $url . ' > /dev/null 2>&1 &';
+            $cmd = 'nohup curl -k'
+                 . ' -H "Host: '.$host.'"'
+                 . ' -H "Content-Type: application/json"'
+                 . " -X POST -d '$json'" // JSON should be single-quoted due it contains double-quote
+                 . $url
+                 . ' > /dev/null 2>&1 &';
+
             exec($cmd);
         }
     }
