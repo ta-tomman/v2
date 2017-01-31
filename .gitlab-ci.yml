@@ -12,4 +12,5 @@ before_script:
 
 PHPLint:
   script:
-    - ./vendor/bin/phpcs --standard=PSR2 app/
+    - php vendor/squizlabs/php_codesniffer/scripts/phpcs --standard=PSR2 app/
+    - php vendor/bin/phpcs --standard=PSR2 app/
