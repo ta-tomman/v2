@@ -2,5 +2,6 @@ image: php:7.0
 
 PHPLint:
   script:
-    - pecl install PHP_CodeSniffer
-    - phpcs app/
+    - composer --version
+    - composer install
+    - vendor/bin/phpcs --standard=PSR2 app/
