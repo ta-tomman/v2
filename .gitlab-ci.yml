@@ -1,0 +1,6 @@
+image: php:7.0
+
+PHPLint:
+  script:
+    - pecl install PHP_CodeSniffer
+    - phpcs app/
