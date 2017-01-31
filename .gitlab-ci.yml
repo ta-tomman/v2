@@ -9,8 +9,11 @@ before_script:
   - apt-get install -yqq git
   - curl -sS https://getcomposer.org/installer | php
   - php composer.phar install
+  - php composer.phar update
 
 PHPLint:
   script:
+    - ls -la vendor/
+    - ls -la vendor/bin/
     - php vendor/squizlabs/php_codesniffer/scripts/phpcs --standard=PSR2 app/
     - php vendor/bin/phpcs --standard=PSR2 app/
