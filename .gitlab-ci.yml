@@ -1,15 +1,15 @@
-image: php:7.0
+image: php:7.0-cli
 
 cache:
   paths:
     - vendor/
 
 before_script:
-  - apt-get update -y
-  - apt-get install -y git
+  - apt-get update -yqq
+  - apt-get install -yqq git
   - curl -sS https://getcomposer.org/installer | php
   - php composer.phar install
 
 PHPLint:
   script:
-    - vendor/bin/phpcs --standard=PSR2 app/
+    - ./vendor/bin/phpcs --standard=PSR2 app/
