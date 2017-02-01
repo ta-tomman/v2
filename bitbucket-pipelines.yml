@@ -10,5 +10,5 @@ pipelines:
     - step:
         script: # Modify the commands below to build your repository.
           - composer install
-          - pwd; ls -l; ls -l vendor; ls -l vendor/bin
+          - composer require --dev squizlabs/php_codesniffer
           - vendor/bin/phpcs --standard=PSR2 --extensions=php app/
