@@ -34,8 +34,7 @@ class Controller extends BaseController
         if ($ifModifiedSince && $ifModifiedSince >= $lastModified) {
             $status = 304;
             $body = '';
-        }
-        else {
+        } else {
             $status = 200;
             $body = $view->render();
         }

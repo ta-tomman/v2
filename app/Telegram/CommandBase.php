@@ -17,11 +17,17 @@ abstract class CommandBase extends Command
     }
 
     public function renderView()
-    {}
+    {
+        //TODO
+    }
 
     public function renderImage()
-    {}
+    {
+        //TODO
+    }
 
     public function renderImageFromView()
-    {}
+    {
+        //TODO
+    }
 }

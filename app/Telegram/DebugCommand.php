@@ -14,8 +14,7 @@ class DebugCommand extends CommandBase
             $this->replyWithMessage([
                 'text' => "`$json`",
                 'parse_mode' => 'Markdown']);
-        }
-        else {
+        } else {
             $token = explode(' ', $param);
             $idekey = $token[0];
             $arg = implode(' ', array_slice($token, 1));
