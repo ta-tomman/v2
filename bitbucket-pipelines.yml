@@ -1,0 +1,9 @@
+image: composer:latest
+
+pipelines:
+  branches:
+    master:
+      - step:
+          script:
+            - composer install
+            - vendor/bin/phpcs --standard=PSR2 --extensions=php app/

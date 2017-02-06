@@ -10,7 +10,9 @@ class HelpCommand extends Command
     protected $description = 'Help system';
 
     public function handle($param)
-    {}
+    {
+        //TODO
+    }
 
     protected function handleUnknownCommand($param)
     {

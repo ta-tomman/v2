@@ -1,23 +1,25 @@
+[![Build Status](https://travis-ci.org/ta-tomman/v2.svg?branch=master)](https://travis-ci.org/ta-tomman/v2)
+
 # TOMMAN
 
-## Install Ubuntu Server
+## 1 Install Ubuntu Server
 
-## Install Aplikasi Server
+## 2 Install Aplikasi Server
 
-### Install Apache
+### 2.1 Install Apache
 
-### Install PHP7
+### 2.2 Install PHP7
 via ondrej ppa
 
-### Install PostgreSQL
+### 2.3 Install PostgreSQL
 
-#### Install PostgreSQL DB Server
+#### 2.3.1 Install PostgreSQL Server
 via ppa
 
-#### Install PostGIS Extension
+#### 2.3.2 Install PostGIS Extension
 
 
-### Install Redis
+### 2.4 Install Redis
 via chris-lea ppa
 
 ```
@@ -32,8 +34,7 @@ sudo mkdir -p /srv/redis
 sudo chown redis:redis /srv/redis
 ```
 
-configuration
-file `/etc/redis/redis.conf`
+file konfigurasi `/etc/redis/redis.conf`
 sesuaikan dengan alokasi RAM
 
 ```

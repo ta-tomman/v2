@@ -8,5 +8,5 @@ indent_style = space
 [*.php]
 indent_size = 4
 
-[*{.blade.php,.js}]
+[*{.blade.php,.js,.yml}]
 indent_size = 2
