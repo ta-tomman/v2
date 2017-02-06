@@ -1,0 +1,12 @@
+image: composer:latest
+
+cache:
+  paths:
+    - vendor/
+
+before_script:
+  - composer install
+
+PHPLint:
+  script:
+    - vendor/bin/phpcs --standard=PSR2 app/
