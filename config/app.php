@@ -12,7 +12,7 @@ return [
     | any other location as required by the application or its packages.
     */
 
-    'name' => 'TOMMANv2',
+    'name' => 'Laravel',
 
     /*
     |--------------------------------------------------------------------------
@@ -64,7 +64,7 @@ return [
     |
     */
 
-    'timezone' => 'Asia/Makassar',
+    'timezone' => 'UTC',
 
     /*
     |--------------------------------------------------------------------------
@@ -121,7 +121,7 @@ return [
     */
 
     'log' => env('APP_LOG', 'single'),
-    'log_max_files' => 90,
+
     'log_level' => env('APP_LOG_LEVEL', 'debug'),
 
     /*
@@ -166,7 +166,7 @@ return [
         /*
          * Package Service Providers...
          */
-        Telegram\Bot\Laravel\TelegramServiceProvider::class,
+        Laravel\Tinker\TinkerServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -196,6 +196,7 @@ return [
         'Artisan' => Illuminate\Support\Facades\Artisan::class,
         'Auth' => Illuminate\Support\Facades\Auth::class,
         'Blade' => Illuminate\Support\Facades\Blade::class,
+        'Broadcast' => Illuminate\Support\Facades\Broadcast::class,
         'Bus' => Illuminate\Support\Facades\Bus::class,
         'Cache' => Illuminate\Support\Facades\Cache::class,
         'Config' => Illuminate\Support\Facades\Config::class,
@@ -224,8 +225,6 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
-
-        'Telegram'  => Telegram\Bot\Laravel\Facades\Telegram::class,
 
     ],
 

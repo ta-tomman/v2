@@ -1,16 +1,8 @@
-# PHPStorm
-.idea
-*.iws
-
-# Laravel 5
-vendor/
-node_modules/
-npm-debug.log
-public/storage
-public/hot
-storage/*.key
-.env.*.php
-.env.php
-.env
-Homestead.yaml
+/node_modules
+/public/storage
+/storage/*.key
+/vendor
+/.idea
 Homestead.json
+Homestead.yaml
+.env
