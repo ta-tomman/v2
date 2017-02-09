@@ -9,9 +9,9 @@ class WebScreenShot
      *
      * @param filepath $srcPath input html
      * @param filepath $dstPath output path with extension (pdf or png)
-     * @param string $dimension output dimension (image or paper size)
+     * @param string $dimension output dimension (image or paper size), default is '720px*1280px'
      */
-    public static function rasterizeFile($srcPath, $dstPath, $dimension = '480px')
+    public static function rasterizeFile($srcPath, $dstPath, $dimension = '720px*1280px')
     {
         $rasterizerPath  = escapeshellarg(__DIR__.'/rasterize.js');
         $url             = escapeshellarg("file:///$srcPath");
