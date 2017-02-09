@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-sm-8">
+  <div class="col-sm-5">
     <div class="white-box">
       <h1 class="box-title">{{ $data->nama }}</h1>
       <div>
@@ -16,7 +16,7 @@
       </div>
     </div>
   </div>
-  <div class="col-sm-4">
+  <div class="col-sm-7">
     <?php $latest = $data->history[0] ?>
     <div class="white-box">
       <h1 class="box-title">{{ $latest->periode }}</h1>

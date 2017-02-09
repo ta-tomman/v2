@@ -14,6 +14,10 @@
 /** Telegram WebHook **/
 Route::post('hook/'.env('TELEGRAM_BOT_TOKEN'), function() { Telegram::commandsHandler(true); });
 
+Route::group(['prefix' => 'tgram'], function() {
+    Route::get('ipayment/{jastel}', 'Billing\IpaymentController@show');
+});
+
 Route::get('/', function () {
     return view('welcome');
 });
