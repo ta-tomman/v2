@@ -3,13 +3,14 @@
 @section('style')
   <style>
     .flex-container {
-      display: flex;
-      align-items: stretch;
-      align-content: stretch;
+      display: table;
+      width: 103%;
+      border-spacing: 10px;
+      margin: -10px -10px 20px -10px;
     }
     .flex-container > div {
-      margin: 10px;
-      flex-grow: 1;
+      display: table-cell;
+      width: 45%;
     }
     .card {
       background-color: #fff;
@@ -25,18 +26,7 @@
       font-weight: 500;
     }
     .entry {
-      margin-bottom: 10px;
-    }
-
-    .history-previous {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: space-around;
-      margin-top: 30px;
-    }
-    .history-previous > div {
-      margin: 10px;
-      flex-grow: 1;
+      margin-bottom: 17px;
     }
   </style>
 @endsection
@@ -47,15 +37,15 @@
       <h1>{{ $data->nama }}</h1>
 
       <div class="entry">
-        <div>Nomor Telepon</div>
+        <div>NOMOR TELEPON</div>
         <div class="text-big">{{ $data->phone }}</div>
       </div>
       <div class="entry">
-        <div>Nomor Internet</div>
+        <div>NOMOR INTERNET</div>
         <div class="text-big">{{ $data->internet }}</div>
       </div>
       <div class="entry">
-        <div>Produk</div>
+        <div>PRODUK</div>
         <div class="text-big">
           <?php $token = preg_match('/\(([^)]+)\)/', $data->groupId, $matches) ?>
           {{ $matches[1] or $data->groupId }}
@@ -68,7 +58,7 @@
       <h1>{{ $latest->periode }}</h1>
 
       @foreach($latest->detail as $detail)
-        <div class="entry clearfix">
+        <div>
           <div>{{ $detail->layanan }}</div>
           <div class="text-big pull-left">Rp</div>
           <div class="text-big pull-right">
@@ -80,18 +70,28 @@
             @endif
           </div>
         </div>
+        <div class="clearfix"></div>
       @endforeach
     </div>
   </div>
 
-  <div class="history-previous">
-    <?php $max = min(11, count($data->history)) ?>
-    @for($i = 1; $i < $max; $i++)
+  <div class="history-previous row">
+    {{-- Start from index 1; ignores first entry (index 0) --}}
+    @for($i = 1; $i < count($data->history); $i++)
       <?php $entry = $data->history[$i] ?>
-      <?php $class = ($entry->statusBayar == 'Lunas') ? 'panel-success' : '' ?>
-      <div class="panel {{ $class }}">
-        <div class="panel-heading">{{ $entry->periode }}</div>
-        <div class="panel-body">Rp {{ $entry->tagihan }}</div>
+      <?php $class = ($entry->statusBayar == 'Lunas') ? 'success' : 'inverse' ?>
+      <div class="col-xs-4">
+        <div class="panel panel-{{ $class }}">
+          <div class="panel-heading">{{ $entry->periode }}</div>
+          <div class="panel-body text-big">
+            @if ($entry->statusBayar == 'Lunas')
+              <i class="fa fa-check-square-o text-success"></i>
+            @else
+              <i class="fa fa-square-o"></i>
+            @endif
+            Rp {{ $entry->tagihan }}
+          </div>
+        </div>
       </div>
     @endfor
   </div>

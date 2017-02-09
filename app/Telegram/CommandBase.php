@@ -27,19 +27,4 @@ abstract class CommandBase extends Command
         $param = $this->appendReplyToMessageId($param);
         parent::replyWithPhoto($param);
     }
-
-    public function renderView()
-    {
-        //TODO
-    }
-
-    public function renderImage()
-    {
-        //TODO
-    }
-
-    public function renderImageFromView()
-    {
-        //TODO
-    }
 }

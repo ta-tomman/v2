@@ -25,8 +25,8 @@ class IpaymentCommand extends CommandBase
 
             $view = view('ipayment.view-bot', ['data' => $result]);
             $html = $view->render();
-            echo $html;return;
-            $outDir = storage_path("telegram/ipayment");
+
+            $outDir      = storage_path("telegram/ipayment");
             $htmlOutPath = "{$outDir}/{$jastel}.html";
             $imgOutPath  = "{$outDir}/{$jastel}.png";
 
