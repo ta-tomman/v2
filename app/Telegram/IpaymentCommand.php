@@ -13,7 +13,6 @@ class IpaymentCommand extends CommandBase
     public function handle($param)
     {
         try {
-
             $this->replyWithChatAction([
                 'action' => 'upload_photo'
             ]);
@@ -37,20 +36,15 @@ class IpaymentCommand extends CommandBase
             $this->replyWithPhoto([
                 'photo' => $imgOutPath
             ]);
-
         } catch (\InvalidArgumentException $e) {
-
             $this->replyWithMessage([
                 'text' => "silahkan input nomor jastel, misal:\n`/ipayment 051112345`\n`/ipayment 161123154654`",
                 'parse_mode' => 'Markdown'
             ]);
-
         } catch (\RuntimeException $e) {
-
             $this->replyWithMessage([
                 'text' => 'Sambungan ke I-Payment GAGAL'
             ]);
-
         }
     }
 }
