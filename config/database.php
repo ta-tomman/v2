@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'default' => env('DB_CONNECTION', 'mysql'),
+    'default' => 'v2',
 
     /*
     |--------------------------------------------------------------------------
@@ -39,27 +39,27 @@ return [
             'prefix' => '',
         ],
 
-        'mysql' => [
+        'v1' => [
             'driver' => 'mysql',
-            'host' => env('DB_HOST', '127.0.0.1'),
-            'port' => env('DB_PORT', '3306'),
-            'database' => env('DB_DATABASE', 'forge'),
-            'username' => env('DB_USERNAME', 'forge'),
-            'password' => env('DB_PASSWORD', ''),
-            'charset' => 'utf8mb4',
-            'collation' => 'utf8mb4_unicode_ci',
+            'host' => env('DB_V1_HOST', '127.0.0.1'),
+            'port' => env('DB_V1_PORT', '3306'),
+            'database' => env('DB_V1_DATABASE', 'forge'),
+            'username' => env('DB_V1_USERNAME', 'forge'),
+            'password' => env('DB_V1_PASSWORD', ''),
+            'charset' => env('DB_V1_CHARSET', 'utf8mb4'),
+            'collation' => env('DB_V1_COLLATION', 'utf8mb4_unicode_ci'),
             'prefix' => '',
             'strict' => true,
             'engine' => null,
         ],
 
-        'pgsql' => [
+        'v2' => [
             'driver' => 'pgsql',
-            'host' => env('DB_HOST', '127.0.0.1'),
-            'port' => env('DB_PORT', '5432'),
-            'database' => env('DB_DATABASE', 'forge'),
-            'username' => env('DB_USERNAME', 'forge'),
-            'password' => env('DB_PASSWORD', ''),
+            'host' => env('DB_V2_HOST', '127.0.0.1'),
+            'port' => env('DB_V2_PORT', '5432'),
+            'database' => env('DB_V2_DATABASE', 'forge'),
+            'username' => env('DB_V2_USERNAME', 'forge'),
+            'password' => env('DB_V2_PASSWORD', ''),
             'charset' => 'utf8',
             'prefix' => '',
             'schema' => 'public',
