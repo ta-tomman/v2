@@ -26,7 +26,7 @@ create db, assign user, install postgis
 
 ### 2.4 Redis
 
-### 2.4.1 Install Redis Server
+#### 2.4.1 Install Redis Server
 via chris-lea ppa
 
 ```
@@ -58,7 +58,7 @@ restart redis
 sudo service redis-server restart
 ```
 
-### 2.4.2 Install PHPRedis Extension
+#### 2.4.2 Install PHPRedis Extension
 Install via PEAR
 ````
 sudo pecl install redis
