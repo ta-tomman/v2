@@ -6,20 +6,27 @@
 
 ## 2 Install Aplikasi Server
 
-### 2.1 Install Apache
+### 2.1 Apache
 
-### 2.2 Install PHP7
+### 2.2 PHP7
 via ondrej ppa
 
-### 2.3 Install PostgreSQL
+### 2.3 PostgreSQL
 
 #### 2.3.1 Install PostgreSQL Server
 via ppa
 
 #### 2.3.2 Install PostGIS Extension
 
+#### 2.3.3 Create DB User
 
-### 2.4 Install Redis
+#### 2.3.4 Create DB
+create db, assign user, install postgis
+
+
+### 2.4 Redis
+
+### 2.4.1 Install Redis Server
 via chris-lea ppa
 
 ```
@@ -50,4 +57,25 @@ restart redis
 ```
 sudo service redis-server restart
 ```
+
+### 2.4.2 Install PHPRedis Extension
+Install via PEAR
+````
+sudo pecl install redis
+````
+
+Buat file `/etc/php/7.0/mods-available/redis.ini`
+````
+extension=redis.so
+````
+
+Aktifkan _extension_
+````
+sudo phpenmod redis
+````
+
+Restart **apache**
+````
+sudo service restart apache2
+````
 
