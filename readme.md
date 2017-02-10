@@ -3,8 +3,9 @@
 # TOMMAN
 
 ## 1 Install Ubuntu Server
+jangan install `LAMP`, jika diperlukan boleh install `OpenSSH Server`
 
-## 2 Install Aplikasi Server
+## 2 Install Server Application
 
 ### 2.1 Apache
 
@@ -79,3 +80,22 @@ Restart **apache**
 sudo service restart apache2
 ````
 
+## 3 Install Tools
+- Git
+- composer
+- NodeJS
+- Gulp
+- Bower
+
+## 4 Install TOMMAN
+### 3.1 Download Source
+- git clone
+- composer install
+### 3.2 Config
+- php artisan key:generate
+- cp .env-example .env
+- chmod 775 storage,bootstrap/cache
+
+### 3.3 Config Apache
+- must have HTTPS
+- DocumentRoot is `public/`
