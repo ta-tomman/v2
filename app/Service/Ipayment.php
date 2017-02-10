@@ -28,6 +28,11 @@ class Ipayment
             }
         }
 
+        // TODO: check empty result in nodejs and return appropriate error
+        if (!$result->nama && !$result->produk && !$result->groupId) {
+            throw new \InvalidArgumentException();
+        }
+
         return $result;
     }
 }
