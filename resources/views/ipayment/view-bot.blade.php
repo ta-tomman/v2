@@ -19,11 +19,9 @@
       padding: 10px;
     }
     .card-footer {
+      color: #fff;
       margin: -10px;
       padding: 20px 10px 0;
-    }
-    .card-footer.bg-inverse {
-      color: #fff;
     }
 
     .entry > div:first-child {
