@@ -18,6 +18,14 @@
       border: 1px solid rgba(0,0,0,.12);
       padding: 10px;
     }
+    .card-footer {
+      margin: -10px;
+      padding: 20px 10px 0;
+    }
+    .card-footer.bg-inverse {
+      color: #fff;
+    }
+
     .entry > div:first-child {
       color: black;
     }
@@ -72,6 +80,20 @@
         </div>
         <div class="clearfix"></div>
       @endforeach
+
+      <?php $class = ($latest->statusBayar == 'Lunas') ? 'bg-success' : 'bg-inverse' ?>
+      <div class="card-footer {{ $class }}">
+        <div class="text-big pull-left">Rp</div>
+        <div class="text-big pull-right">
+          <span>{{ $latest->tagihan }}</span>
+          @if ($latest->statusBayar == 'Lunas')
+            <i class="fa fa-check-square-o text-success"></i>
+          @else
+            <i class="fa fa-square-o"></i>
+          @endif
+        </div>
+        <div class="clearfix"></div>
+      </div>
     </div>
   </div>
 
