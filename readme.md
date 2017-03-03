@@ -9,7 +9,7 @@ jangan install `LAMP`, jika diperlukan boleh install `OpenSSH Server`
 
 ### 2.1 Apache
 
-### 2.2 PHP7
+### 2.2 PHP7.0
 via ondrej ppa
 
 ### 2.3 PostgreSQL
@@ -19,11 +19,44 @@ via ppa
 
 #### 2.3.2 Install PostGIS Extension
 
-#### 2.3.3 Create DB User
+#### 2.3.3 Create Database & User
+konek ke pgsql
+```
+sudo -u postgrse psql
+```
 
-#### 2.3.4 Create DB
+buat user
+```
+CREATE USER ta_tomman PASSWORD 'telkomaksesdb';
+```
+
+buat database
+```
+CREATE DATABASE ta_tomman OWNER = ta_tomman;
+```
+
+masuk ke database yang telah dibuat
+```
+\c ta_tomman
+```
+
+install postgis ke database
+```
+CREATE EXTENSION postgis;
+```
+
+keluar dari psql
+```
+\q
+```
+
 create db, assign user, install postgis
 
+#### 2.3.4 Install php-pgsql Extension
+```
+sudo apt install php7.0-pgsql
+sudo phpenmod pgsql
+```
 
 ### 2.4 Redis
 
@@ -91,11 +124,16 @@ sudo service restart apache2
 ### 3.1 Download Source
 - git clone
 - composer install
+- npm install
+- bower install
 ### 3.2 Config
 - php artisan key:generate
 - cp .env-example .env
 - chmod 775 storage,bootstrap/cache
 
-### 3.3 Config Apache
+### 3.3 Install DB
+- php artisan migrate
+
+### 3.4 Config Apache
 - must have HTTPS
 - DocumentRoot is `public/`
