@@ -58,7 +58,7 @@
 <!--Slimscroll JavaScript For custom scroll-->
 <script src="js/jquery.slimscroll.js"></script>
 <!--Wave Effects -->
-<script src="js/waves.js"></script>
+{{--<script src="js/waves.js"></script>--}}
 <!-- Custom Theme JavaScript -->
 <script src="js/custom.min.js"></script>
 @yield('script')
