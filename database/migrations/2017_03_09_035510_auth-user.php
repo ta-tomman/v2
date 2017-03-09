@@ -29,8 +29,8 @@ class AuthUser extends Migration
 
         DB::statement("
             INSERT INTO 
-              auth.user(is_local, nik, email, nama, pass)
-              VALUES(TRUE, '000000', 'master@tomman.info', 'App Master', 'telkomaksesmaster')
+              auth.user(is_local, nik, email, nama, pass, permission)
+              VALUES(TRUE, '000000', 'master@tomman.info', 'App Master', 'telkomaksesmaster', '*:FULL')
         ");
     }
 
