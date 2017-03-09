@@ -18,12 +18,19 @@ class AuthUser extends Migration
                 id              serial PRIMARY KEY,
                 is_local        boolean DEFAULT FALSE,
                 nik             text NOT NULL UNIQUE CHECK (nik <> ''),
+                email           text NOT NULL UNIQUE CHECK (email <> ''),
                 nama            text NOT NULL CHECK (nama <> ''),
                 pass            text NOT NULL,
                 remember_token  text,
                 sso_cookie      text,
                 permission      text NOT NULL DEFAULT ''
             );
+        ");
+
+        DB::statement("
+            INSERT INTO 
+              auth.user(is_local, nik, email, nama, pass)
+              VALUES(TRUE, '000000', 'master@tomman.info', 'App Master', 'telkomaksesmaster')
         ");
     }
 
