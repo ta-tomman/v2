@@ -15,12 +15,12 @@ class Auth
         'FULL'          => 0b11111111
     ];
 
-
     public static function hasPermission(string $module, string $permission, array $available): bool
     {
         foreach ($available as $mod => $perm) {
-            if (fnmatch($mod, $module) && ($permission & $perm))
+            if (fnmatch($mod, $module) && ($permission & $perm)) {
                 return true;
+            }
         }
 
         return false;
