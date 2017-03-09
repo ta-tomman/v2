@@ -15,7 +15,7 @@ class ServiceAuthTest extends TestCase
      *
      * @return void
      */
-    public function testHasPermissionExact()
+    public function test_exact_permission()
     {
         $this->assertTrue(
             Auth::hasPermission(
@@ -26,7 +26,7 @@ class ServiceAuthTest extends TestCase
         );
     }
 
-    public function testHasPermissionWildcard()
+    public function test_wildcard_permission()
     {
         $this->assertTrue(
             Auth::hasPermission(
@@ -37,7 +37,7 @@ class ServiceAuthTest extends TestCase
         );
     }
 
-    public function testHasPermissionHigherPermission()
+    public function test_higher_permission()
     {
         $this->assertTrue(
             Auth::hasPermission(
@@ -48,7 +48,7 @@ class ServiceAuthTest extends TestCase
         );
     }
 
-    public function testHasPermissionHigherModule()
+    public function test_higher_module()
     {
         $this->assertTrue(
             Auth::hasPermission(
@@ -59,7 +59,7 @@ class ServiceAuthTest extends TestCase
         );
     }
 
-    public function testHasPermissionMultipleAvailable()
+    public function test_multiple_available_permission()
     {
         $this->assertTrue(
             Auth::hasPermission(
