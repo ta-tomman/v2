@@ -9,16 +9,19 @@
   <title>TOMMAN</title>
 
   <!-- Bootstrap Core CSS -->
-  <link href="bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/tpl/eliteadmin-modern/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
   <!-- This is Sidebar menu CSS -->
-  <link href="../plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.css" rel="stylesheet">
+  <link href="/tpl/eliteadmin-modern/plugins/sidebar-nav/dist/sidebar-nav.min.css" rel="stylesheet">
+
   @yield('style-import')
+
   <!-- This is a Animation CSS -->
-  <link href="css/animate.css" rel="stylesheet">
+  <link href="/tpl/eliteadmin-modern/css/animate.css" rel="stylesheet">
   <!-- This is a Custom CSS -->
-  <link href="css/style.css" rel="stylesheet">
+  <link href="/tpl/eliteadmin-modern/css/style.css" rel="stylesheet">
   <!-- color CSS you can use different color css from css/colors folder -->
-  <link href="css/colors/default.css" id="theme"  rel="stylesheet">
+  <link href="/tpl/eliteadmin-modern/css/colors/default.css" id="theme"  rel="stylesheet">
+
   @yield('style')
 
 </head>
@@ -50,17 +53,17 @@
 </div>
 
 <!-- jQuery -->
-<script src="../plugins/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="/tpl/eliteadmin-modern/plugins/jquery/dist/jquery.min.js"></script>
 <!-- Bootstrap Core JavaScript -->
-<script src="bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="/tpl/eliteadmin-modern/bootstrap/dist/js/bootstrap.min.js"></script>
 <!-- Sidebar menu plugin JavaScript -->
-<script src="../plugins/bower_components/sidebar-nav/dist/sidebar-nav.min.js"></script>
+<script src="/tpl/eliteadmin-modern/plugins/sidebar-nav/dist/sidebar-nav.min.js"></script>
 <!--Slimscroll JavaScript For custom scroll-->
-<script src="js/jquery.slimscroll.js"></script>
+<script src="/tpl/eliteadmin-modern/js/jquery.slimscroll.js"></script>
 <!--Wave Effects -->
-{{--<script src="js/waves.js"></script>--}}
+{{--<script src="/tpl/eliteadmin-modern/js/waves.js"></script>--}}
 <!-- Custom Theme JavaScript -->
-<script src="js/custom.min.js"></script>
+<script src="/tpl/eliteadmin-modern/js/custom.min.js"></script>
 @yield('script')
 </body>
 </html>
