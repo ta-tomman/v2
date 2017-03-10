@@ -31,9 +31,13 @@ Route::group(['prefix' => 'tgram'], function() {
     Route::get('ipayment/{jastel}', 'Billing\IpaymentController@show');
 });
 
-Route::get('/', function () {
-    return view('welcome');
 /** Authentication **/
 Route::get('login', 'Auth\LoginController@loginPage');
 
+/** Normal Routes **/
+Route::group(['middleware' => 'auth'], function() {
+    Route::get('/', function () {
+        return view('welcome');
+    });
 });
+
