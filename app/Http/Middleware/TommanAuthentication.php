@@ -16,6 +16,7 @@ class TommanAuthentication
     public function handle($request, Closure $next)
     {
         if (!$request->session()->has('auth')) {
+            $request->session()->put('auth-originalUrl', '');
             // TODO: test fetch/ServiceWorker
             if ($request->ajax()) {
                 return response('UNAUTHORIZED', 401);
