@@ -33,4 +33,7 @@ Route::group(['prefix' => 'tgram'], function() {
 
 Route::get('/', function () {
     return view('welcome');
+/** Authentication **/
+Route::get('login', 'Auth\LoginController@loginPage');
+
 });
