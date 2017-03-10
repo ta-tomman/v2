@@ -20,8 +20,8 @@ class ServiceAuthorizationTest extends TestCase
         $this->assertTrue(
             Auth::hasPermission(
                 'auth.user',
-                Auth::PERM['READ_ALL'],
-                ['auth.user' => Auth::PERM['READ_ALL']]
+                Auth::PERM_READ_ALL,
+                ['auth.user' => Auth::PERM_READ_ALL]
             )
         );
     }
@@ -31,8 +31,8 @@ class ServiceAuthorizationTest extends TestCase
         $this->assertTrue(
             Auth::hasPermission(
                 'auth.user',
-                Auth::PERM['READ_ALL'],
-                ['auth.*' => Auth::PERM['READ_ALL']]
+                Auth::PERM_READ_ALL,
+                ['auth.*' => Auth::PERM_READ_ALL]
             )
         );
     }
@@ -42,8 +42,8 @@ class ServiceAuthorizationTest extends TestCase
         $this->assertTrue(
             Auth::hasPermission(
                 'auth.user',
-                Auth::PERM['READ_OWN'],
-                ['auth.*' => Auth::PERM['READ_ALL']]
+                Auth::PERM_READ_OWN,
+                ['auth.*' => Auth::PERM_READ_ALL]
             )
         );
     }
@@ -53,8 +53,8 @@ class ServiceAuthorizationTest extends TestCase
         $this->assertTrue(
             Auth::hasPermission(
                 'auth.user.update',
-                Auth::PERM['WRITE_OWN'],
-                ['auth.*' => Auth::PERM['WRITE_ALL']]
+                Auth::PERM_WRITE_OWN,
+                ['auth.*' => Auth::PERM_WRITE_ALL]
             )
         );
     }
@@ -64,10 +64,10 @@ class ServiceAuthorizationTest extends TestCase
         $this->assertTrue(
             Auth::hasPermission(
                 'hr.list',
-                Auth::PERM['READ_ALL'],
+                Auth::PERM_READ_ALL,
                 [
-                    'auth.*' => Auth::PERM['WRITE_ALL'],
-                    'hr.*' => Auth::PERM['READ_ALL']
+                    'auth.*' => Auth::PERM_WRITE_ALL,
+                    'hr.*' => Auth::PERM_READ_ALL
                 ]
             )
         );

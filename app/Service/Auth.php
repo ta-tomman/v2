@@ -4,16 +4,14 @@ namespace App\Service;
 
 class Auth
 {
-    const PERM = [
-        'NONE'          => 0b00000000,
-        'READ_OWN'      => 0b00000001,
-        'READ_GROUP'    => 0b00000010,
-        'READ_ALL'      => 0b00000111,
-        'WRITE_OWN'     => 0b00001000,
-        'WRITE_GROUP'   => 0b00010000,
-        'WRITE_ALL'     => 0b00011000,
-        'FULL'          => 0b11111111
-    ];
+    const PERM_NONE          = 0b00000000;
+    const PERM_READ_OWN      = 0b00000001;
+    const PERM_READ_GROUP    = 0b00000010;
+    const PERM_READ_ALL      = 0b00000111;
+    const PERM_WRITE_OWN     = 0b00001000;
+    const PERM_WRITE_GROUP   = 0b00010000;
+    const PERM_WRITE_ALL     = 0b00011000;
+    const PERM_FULL          = 0b11111111;
 
     public static function hasPermission(string $module, string $permission, array $available): bool
     {
