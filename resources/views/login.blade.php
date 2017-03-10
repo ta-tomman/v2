@@ -22,12 +22,14 @@
 
 </head>
 <body>
+
 <section id="wrapper" class="login-register">
+  @include('partial.alerts')
   <div class="login-box">
     <div class="white-box">
       <form class="form-horizontal form-material" id="loginform" method="post">
         {{ csrf_field() }}
-        <h3 class="box-title m-b-20">Sign In</h3>
+        <h3 class="box-title m-b-20">Login</h3>
         <div class="form-group ">
           <div class="col-xs-12">
             <input name="nik" class="form-control" type="text" required="" placeholder="NIK SSO">

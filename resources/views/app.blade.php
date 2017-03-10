@@ -39,12 +39,13 @@
   <div class="side-mini-panel">
     <ul class="mini-nav">
       <div class="togglediv"><a href="javascript:void(0)" id="togglebtn"><i class="ti-menu"></i></a></div>
-
     </ul>
   </div>
 
   <div class="page-wrapper">
     <div class="container-fluid">
+      @include('partial.alerts')
+
       @yield('body')
     </div>
 
