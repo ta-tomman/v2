@@ -4,7 +4,7 @@ namespace App\Http\Middleware;
 
 use Closure;
 
-class TommanAuth
+class TommanAuthentication
 {
     /**
      * Handle an incoming request.

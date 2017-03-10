@@ -57,6 +57,6 @@ class Kernel extends HttpKernel
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
 
-        'auth' => \App\Http\Middleware\TommanAuth::class
+        'authenticated' => \App\Http\Middleware\TommanAuthentication::class
     ];
 }

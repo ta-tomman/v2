@@ -11,7 +11,9 @@
 |
 */
 
-/** Telegram WebHook **/
+/*
+ * Telegram Webhook
+ */
 Route::post('hook/'.env('TELEGRAM_BOT_TOKEN'), function() {
     // terminate connection early
     // so a command handler doesn't block telegram queue
@@ -31,11 +33,19 @@ Route::group(['prefix' => 'tgram'], function() {
     Route::get('ipayment/{jastel}', 'Billing\IpaymentController@show');
 });
 
-/** Authentication **/
-Route::get('login', 'Auth\LoginController@loginPage');
 
-/** Normal Routes **/
-Route::group(['middleware' => 'auth'], function() {
+/*
+ * Authentication
+ */
+Route::get('login', 'Auth\LoginController@loginPage');
+Route::post('login', 'Auth\LoginController@login');
+Route::get('logout', 'Auth\LoginController@logout');
+
+
+/*
+ * Normal Routes
+ */
+Route::group(['middleware' => 'authenticated'], function() {
     Route::get('/', function () {
         return view('welcome');
     });

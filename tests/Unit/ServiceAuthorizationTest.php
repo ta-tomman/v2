@@ -8,7 +8,7 @@ use Illuminate\Foundation\Testing\DatabaseTransactions;
 
 use App\Service\Auth;
 
-class ServiceAuthTest extends TestCase
+class ServiceAuthorizationTest extends TestCase
 {
     /**
      * A basic test example.
@@ -31,7 +31,7 @@ class ServiceAuthTest extends TestCase
         $this->assertTrue(
             Auth::hasPermission(
                 'auth.user',
-                AUTH::PERM['READ_ALL'],
+                Auth::PERM['READ_ALL'],
                 ['auth.*' => Auth::PERM['READ_ALL']]
             )
         );
@@ -42,7 +42,7 @@ class ServiceAuthTest extends TestCase
         $this->assertTrue(
             Auth::hasPermission(
                 'auth.user',
-                AUTH::PERM['READ_OWN'],
+                Auth::PERM['READ_OWN'],
                 ['auth.*' => Auth::PERM['READ_ALL']]
             )
         );
@@ -53,7 +53,7 @@ class ServiceAuthTest extends TestCase
         $this->assertTrue(
             Auth::hasPermission(
                 'auth.user.update',
-                AUTH::PERM['WRITE_OWN'],
+                Auth::PERM['WRITE_OWN'],
                 ['auth.*' => Auth::PERM['WRITE_ALL']]
             )
         );
@@ -64,7 +64,7 @@ class ServiceAuthTest extends TestCase
         $this->assertTrue(
             Auth::hasPermission(
                 'hr.list',
-                AUTH::PERM['READ_ALL'],
+                Auth::PERM['READ_ALL'],
                 [
                     'auth.*' => Auth::PERM['WRITE_ALL'],
                     'hr.*' => Auth::PERM['READ_ALL']
