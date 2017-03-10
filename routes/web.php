@@ -17,6 +17,7 @@
 Route::post('hook/'.env('TELEGRAM_BOT_TOKEN'), function() {
     // terminate connection early
     // so a command handler doesn't block telegram queue
+    ignore_user_abort();
     header('Connection: close');
     ob_start();
     echo 'OK';
