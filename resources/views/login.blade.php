@@ -25,16 +25,17 @@
 <section id="wrapper" class="login-register">
   <div class="login-box">
     <div class="white-box">
-      <form class="form-horizontal form-material" id="loginform">
+      <form class="form-horizontal form-material" id="loginform" method="post">
+        {{ csrf_field() }}
         <h3 class="box-title m-b-20">Sign In</h3>
         <div class="form-group ">
           <div class="col-xs-12">
-            <input class="form-control" type="text" required="" placeholder="Username">
+            <input name="nik" class="form-control" type="text" required="" placeholder="NIK SSO">
           </div>
         </div>
         <div class="form-group">
           <div class="col-xs-12">
-            <input class="form-control" type="password" required="" placeholder="Password">
+            <input name="pass" class="form-control" type="password" required="" placeholder="Password">
           </div>
         </div>
         <div class="form-group">
