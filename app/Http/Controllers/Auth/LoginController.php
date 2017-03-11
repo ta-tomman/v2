@@ -16,7 +16,7 @@ class LoginController extends Controller
     public function login(Request $request)
     {
         $nik  = $request->input('nik');
-        $pass = $request->input('nik');
+        $pass = $request->input('pass');
 
         $ssoResult = SSO::login($nik, $pass);
 
@@ -34,7 +34,7 @@ class LoginController extends Controller
             $request->flash();
 
             // flash proper error message
-            switch($ssoResult->error) {
+            switch ($ssoResult->error) {
                 case SSO::ERR_PASSWORD_WRONG:
                     $alertText = '<strong>Password</strong> salah. User akan dikunci jika 3x salah password';
                     break;
