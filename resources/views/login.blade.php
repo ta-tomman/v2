@@ -32,12 +32,12 @@
         <h3 class="box-title m-b-20">Login</h3>
         <div class="form-group ">
           <div class="col-xs-12">
-            <input name="nik" class="form-control" type="text" required="" placeholder="NIK SSO">
+            <input name="nik" class="form-control" type="text" required="" placeholder="NIK SSO" value="{{ old('nik') }}" {{ strlen(old('nik')) ? '' : 'autofocus' }}>
           </div>
         </div>
         <div class="form-group">
           <div class="col-xs-12">
-            <input name="pass" class="form-control" type="password" required="" placeholder="Password">
+            <input name="pass" class="form-control" type="password" required="" placeholder="Password" {{ strlen(old('nik')) ? 'autofocus' : '' }}>
           </div>
         </div>
         <div class="form-group">
