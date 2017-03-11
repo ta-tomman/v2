@@ -10,3 +10,4 @@ before_script:
 PHPLint:
   script:
     - vendor/bin/phpcs --standard=PSR2 --extensions=php app/
+    - vendor/bin/phpunit --testdox
