@@ -33,7 +33,6 @@ class LoginController extends Controller
             // flash old input
             $request->flash();
 
-            // flash proper error message
             switch ($ssoResult->error) {
                 case SSO::ERR_PASSWORD_WRONG:
                     $alertText = '<strong>Password</strong> salah. User akan dikunci jika 3x salah password';
@@ -43,14 +42,13 @@ class LoginController extends Controller
                     $alertText = '<strong>User</strong> tidak terdaftar';
                     break;
             }
-            $request->session()->flash('alerts', [
+
+            return back()->with('alerts', [
                 [
                     'type' => 'danger',
                     'text' => $alertText
                 ]
             ]);
-
-            return view('login');
         }
     }
 }
