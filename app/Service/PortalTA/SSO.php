@@ -2,35 +2,33 @@
 
 namespace App\Service\PortalTA;
 
-use GuzzleHttp\Client as HttpClient;
-
 class SSO
 {
+    const LOGIN_URL = 'http://telkomakses.co.id/login/';
+    const INDEX_URL = 'http://apps.telkomakses.co.id/portal/index.php';
 
-    public function login($nik, $pass)
+    public static function login($nik, $pass)
     {
-        $path   = escapeshellarg(__DIR__.'/SSO.js');
-        $nik    = escapeshellarg($nik);
-        $pass   = escapeshellarg($pass);
-        $cmd    = escapeshellcmd("node $path $nik $pass");
-        $result = json_decode(shell_exec($cmd));
+        $jar = new \GuzzleHttp\Cookie\CookieJar();
+        $http = new \GuzzleHttp\Client();
 
-        if ($result === null) {
-            throw new \RuntimeException('shell_exec');
-        }
+        $http->request('GET', self::LOGIN_URL, [
+            'cookies' => $jar
+        ]);
+        $http->request('POST', self::LOGIN_URL, [
+            'form_params' => [
+                'username' => $nik,
+                'password' => $pass
+            ],
+            'cookies' => $jar
+        ]);
+        $cookies = $jar->toArray();
+        $response = $http->request('GET', self::INDEX_URL, [
+            'allow_redirects' => false,
+            'cookies' => $jar
+        ]);
 
-        if (isset($result->error)) {
-            switch ($result->error) {
-                case 'InvalidArgument':
-                    throw new \InvalidArgumentException();
-                    break;
-
-                case 'RequestFailed':
-                case 'UnhandledRejection':
-                    throw new \RuntimeException($result);
-                    break;
-            }
-        }
+        $result = $response->getStatusCode();
 
         // should return cookie
         // all other API in PortalTA should expect cookie

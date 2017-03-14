@@ -11,6 +11,11 @@
 |
 */
 
+Route::get('debug/sso', function() {
+    $result = \App\Service\PortalTA\SSO::login('92140917', '@12wandy-');
+    echo($result);
+});
+
 /*
  * Telegram Webhook
  */

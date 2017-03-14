@@ -1,5 +1,8 @@
+"use strict";
+
 process.on('unhandledRejection', e => {
   console.log('{"error":"UnhandledRejection"}');
+  process.exit();
 });
 
 const Chromium = require('node-horseman');
@@ -32,7 +35,39 @@ const browser = new Chromium({
   loadImages: false
 });
 
-const run = Promise.coroutine(function* () {});
+browser.on('loadFinished', status => {
+  console.log('LoadFinished', status);
+});
+browser.on('error', (msg, trace) => {
+  console.log('error', msg, trace);
+});
+browser.on('alert', msg => {
+  console.log('alert', alert);
+});
+
+const run = Promise.coroutine(function* () {
+  yield browser
+    .open(URL)
+    .type('input[name=username]', nik)
+    .type('input[name=password]', pass)
+    .click('[name=btn_masuk]')
+    .waitForNextPage()
+    .waitForNextPage()
+  ;
+
+  var url = yield browser.url();
+  if (url == URL) {
+    console.log(JSON.stringify({
+      error: 'LoginFailed'
+    }));
+    return;
+  }
+
+  var cookies = yield browser.cookies();
+
+  // primary output
+  console.log(JSON.stringify(cookies));
+});
 
 run()
   .catch(e => {
