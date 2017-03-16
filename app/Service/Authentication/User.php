@@ -6,19 +6,16 @@ use Illuminate\Support\Facades\DB;
 
 class User
 {
-    public static function getByCredential($user, $pass)
+    public static function getByLocalCredential($user, $pass)
     {
-        $result = DB::select("
-            SELECT *
-            FROM auth.user
-            WHERE
-              login = ? AND pass = ?
-        ", [
-            $user, $pass
-        ]);
+        $result = DB::table('auth.user')->where([
+            'login'     => $user,
+            'pass'      => $pass,
+            'is_local'  => true
+        ])->first();
 
-        if (count($result)) {
-            return self::deserializePermission($result[0]);
+        if ($result) {
+            return self::deserializePermission($result);
         } else {
             return false;
         }

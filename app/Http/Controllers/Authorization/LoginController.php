@@ -36,7 +36,7 @@ class LoginController extends Controller
 
             return $this->successResponse($request, $rememberToken);
         } else {
-            $localUser = LocalUser::getByCredential($nik, $pass);
+            $localUser = LocalUser::getByLocalCredential($nik, $pass);
             if ($localUser) {
                 $request->session()->put('auth', $localUser);
                 return $this->successResponse($request, $rememberToken);
