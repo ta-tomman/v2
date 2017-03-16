@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Auth;
+namespace App\Http\Controllers\Authorization;
 
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Service\SSO;
+use App\Service\PortalTA\SSO as PortalTaSso;
 use App\Service\Authentication\User as LocalUser;
 
 class LoginController extends Controller
@@ -20,37 +22,51 @@ class LoginController extends Controller
         $pass = $request->input('pass');
         $rememberUser = $request->input('remember');
 
+        $rememberToken = null;
+        if ($rememberUser) {
+            $rememberToken = md5($nik . microtime());
+        }
+
         $ssoResult = SSO::checkCredential($nik, $pass);
 
         if ($ssoResult->success) {
             // TODO: user data via auth table and hrmista
-            $authSession = $this->generateSSOSession($nik, $pass);
+            $authSession = $this->generateLocalUser($nik, $pass, $ssoResult, $rememberToken);
             $request->session()->put('auth', $authSession);
 
-            return $this->successResponse($request);
-        } elseif ($localUser = LocalUser::getByCredential($nik, $pass)) {
-            $authSession = $this->generateLocalSession($localUser);
-            $request->session()->put('auth', $authSession);
-
-            return $this->successResponse($request);
+            return $this->successResponse($request, $rememberToken);
         } else {
             $localUser = LocalUser::getByCredential($nik, $pass);
+            if ($localUser) {
+                $request->session()->put('auth', $localUser);
+                return $this->successResponse($request, $rememberToken);
+            }
 
             return $this->failureResponse($request, $ssoResult);
         }
     }
 
-    private function generateSSOSession($nik, $pass)
-    {}
-
-    private function generateUserData($nik, $pass)
-    {}
-
-    private function generateLocalSession($localUser)
+    private function generateLocalUser($nik, $pass, $ssoResult, $rememberToken)
     {
+        $localUser = LocalUser::getByLogin($nik);
+        if (!$localUser) {
+            $ssoCookie = serialize(PortalTaSso::getCookie($nik, $pass));
+            $data = [
+                'login'          => $nik,
+                'nama'           => $ssoResult->nama,
+                'pass'           => $pass,
+                'sso_cookie'     => $ssoCookie,
+                'remember_token' => $rememberToken
+            ];
+
+            $insertId = LocalUser::create($data);
+            $localUser = LocalUser::getById($insertId);
+        }
+
+        return $localUser;
     }
 
-    private function successResponse(Request $request)
+    private function successResponse(Request $request, $rememberToken)
     {
         if ($request->session()->has('auth-originalUrl')) {
             $url = $request->session()->pull('auth-originalUrl');
@@ -58,10 +74,15 @@ class LoginController extends Controller
             $url = '/';
         }
 
-        return redirect($url);
+        $response = redirect($url);
+        if ($rememberToken) {
+            $response->cookie('persistent-token', $rememberToken, 0, '', '', true, true);
+        }
+
+        return $response;
     }
 
-    private function failureResponse(Request $request, $ssoResult): \Illuminate\Http\RedirectResponse
+    private function failureResponse(Request $request, $ssoResult): RedirectResponse
     {
         // flash old input
         $request->flash();
@@ -83,5 +104,4 @@ class LoginController extends Controller
             ]
         ]);
     }
-
 }

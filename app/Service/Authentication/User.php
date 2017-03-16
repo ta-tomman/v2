@@ -2,6 +2,8 @@
 
 namespace App\Service\Authentication;
 
+use Illuminate\Support\Facades\DB;
+
 class User
 {
     public static function getByCredential($user, $pass)
@@ -11,14 +13,13 @@ class User
             FROM auth.user
             WHERE
               login = ? AND pass = ?
-        ",[
+        ", [
             $user, $pass
         ]);
 
         if (count($result)) {
-            return self::deserializePermission($result[1]);
-        }
-        else {
+            return self::deserializePermission($result[0]);
+        } else {
             return false;
         }
     }
@@ -29,30 +30,40 @@ class User
             SELECT *
             FROM auth.user
             WHERE remember_token = ?
-        ",[$token]);
+        ", [$token]);
 
         if (count($result)) {
-            return self::deserializePermission($result[1]);
-        }
-        else {
+            return self::deserializePermission($result[0]);
+        } else {
             return false;
         }
     }
 
     public static function getByLogin($login)
     {
-        $result = DB::select("
-            SELECT *
-            FROM auth.user
-            WHERE login = ?
-        ",[$login]);
+        $result = DB::table('auth.user')->where('login', $login)->first();
 
-        if (count($result)) {
-            return self::deserializePermission($result[1]);
-        }
-        else {
+        if ($result) {
+            return self::deserializePermission($result);
+        } else {
             return false;
         }
+    }
+
+    public static function getById($id)
+    {
+        $result = DB::table('auth.user')->where('id', $id)->first();
+
+        if ($result) {
+            return self::deserializePermission($result);
+        } else {
+            return false;
+        }
+    }
+
+    public static function create(array $data)
+    {
+        return DB::table('auth.user')->insertGetId($data);
     }
 
     private static function deserializePermission($user)

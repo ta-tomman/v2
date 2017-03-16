@@ -36,7 +36,7 @@ class SSO
             case 'Yes':
                 $result->success = true;
                 $result->error   = self::ERR_NONE;
-                $result->name    = $ssoResult->nama;
+                $result->nama    = $ssoResult->nama;
                 break;
 
             // Valid User, Wrong Password

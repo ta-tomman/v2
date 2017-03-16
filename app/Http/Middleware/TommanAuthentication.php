@@ -16,7 +16,9 @@ class TommanAuthentication
      */
     public function handle($request, Closure $next)
     {
-        if ($request->session()->has('auth')) return $next($request);
+        if ($request->session()->has('auth')) {
+            return $next($request);
+        }
 
         $rememberToken = $request->cookie('persistent-token');
         if ($rememberToken) {
@@ -34,6 +36,5 @@ class TommanAuthentication
         } else {
             return redirect('login');
         }
-
     }
 }
