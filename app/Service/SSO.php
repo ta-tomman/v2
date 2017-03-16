@@ -12,7 +12,14 @@ class SSO
     const ERR_USER_NOT_EXIST = -1;
     const ERR_PASSWORD_WRONG = -2;
 
-    public static function login($nik, $password)
+    /**
+     * Memastikan NIK dan Password benar, via SSO API
+     *
+     * @param $nik
+     * @param $password
+     * @return \stdClass jika NIK dan Password benar, properti 'success' akan bernilai true
+     */
+    public static function checkCredential($nik, $password)
     {
         $http = new HttpClient();
         $response = $http->request('POST', self::LOGIN_URL, [

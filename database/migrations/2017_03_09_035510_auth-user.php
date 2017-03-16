@@ -17,7 +17,7 @@ class AuthUser extends Migration
             CREATE TABLE auth.user(
                 id              serial PRIMARY KEY,
                 is_local        boolean DEFAULT FALSE,
-                nik             text NOT NULL UNIQUE CHECK (nik <> ''),
+                login           text NOT NULL UNIQUE CHECK (login <> ''),
                 email           text NOT NULL UNIQUE CHECK (email <> ''),
                 nama            text NOT NULL CHECK (nama <> ''),
                 pass            text NOT NULL,
@@ -29,8 +29,8 @@ class AuthUser extends Migration
 
         DB::statement("
             INSERT INTO 
-              auth.user(is_local, nik, email, nama, pass, permission)
-              VALUES(TRUE, '000000', 'master@tomman.info', 'App Master', 'telkomaksesmaster', '*:FULL')
+              auth.user(is_local, login, email, nama, pass, permission)
+              VALUES(TRUE, 'master', 'master@tomman.info', 'App Master', 'telkomaksesmaster', '*:FULL')
         ");
     }
 

@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Service\Authentication\User;
 use Closure;
 
 class TommanAuthentication
@@ -15,16 +16,24 @@ class TommanAuthentication
      */
     public function handle($request, Closure $next)
     {
-        if (!$request->session()->has('auth')) {
-            $request->session()->put('auth-originalUrl', $request->fullUrl());
-            // TODO: test fetch/ServiceWorker
-            if ($request->ajax()) {
-                return response('UNAUTHORIZED', 401);
-            } else {
-                return redirect('login');
+        if ($request->session()->has('auth')) return $next($request);
+
+        $rememberToken = $request->cookie('persistent-token');
+        if ($rememberToken) {
+            $user = User::getByRememberToken($rememberToken);
+            if ($user) {
+                $request->session()->put('auth', $user);
+                return $next($request);
             }
         }
 
-        return $next($request);
+        $request->session()->put('auth-originalUrl', $request->fullUrl());
+        // TODO: test fetch/ServiceWorker
+        if ($request->ajax()) {
+            return response('UNAUTHORIZED', 401);
+        } else {
+            return redirect('login');
+        }
+
     }
 }

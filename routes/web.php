@@ -12,7 +12,7 @@
 */
 
 Route::get('debug/sso', function() {
-    $result = \App\Service\PortalTA\SSO::login('92140917', '@12wandy');
+    $result = \App\Service\PortalTA\SSO::getCookie('92140917', '@12wandy');
     echo($result);
 });
 
@@ -43,9 +43,9 @@ Route::group(['prefix' => 'tgram'], function() {
 /*
  * Authentication
  */
-Route::get('login', 'Auth\LoginController@loginPage');
-Route::post('login', 'Auth\LoginController@login');
-Route::get('logout', 'Auth\LoginController@logout');
+Route::get('login', 'Authorization\LoginController@loginPage');
+Route::post('login', 'Authorization\LoginController@login');
+Route::get('logout', 'Authorization\LoginController@logout');
 
 
 /*

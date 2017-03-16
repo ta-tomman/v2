@@ -43,7 +43,7 @@
         <div class="form-group">
           <div class="col-md-12">
             <div class="checkbox checkbox-primary pull-left p-t-0">
-              <input id="checkbox-signup" type="checkbox">
+              <input name="remember" id="checkbox-signup" type="checkbox">
               <label for="checkbox-signup"> Remember me </label>
             </div>
           </div>
