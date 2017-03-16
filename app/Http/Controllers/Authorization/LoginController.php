@@ -61,6 +61,11 @@ class LoginController extends Controller
 
             $insertId = LocalUser::create($data);
             $localUser = LocalUser::getById($insertId);
+        } elseif ($rememberToken) {
+            LocalUser::update($localUser->id, [
+                'remember_token' => $rememberToken
+            ]);
+            $localUser->remember_token = $rememberToken;
         }
 
         return $localUser;

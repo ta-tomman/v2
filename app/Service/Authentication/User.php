@@ -59,6 +59,11 @@ class User
         return DB::table('auth.user')->insertGetId($data);
     }
 
+    public static function update($id, array $data)
+    {
+        return DB::table('auth.user')->where('id', $id)->update($data);
+    }
+
     private static function deserializePermission($user)
     {
         $permission = json_decode($user->permission);
