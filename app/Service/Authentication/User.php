@@ -26,14 +26,10 @@ class User
 
     public static function getByRememberToken($token)
     {
-        $result = DB::select("
-            SELECT *
-            FROM auth.user
-            WHERE remember_token = ?
-        ", [$token]);
+        $result = DB::table('auth.user')->where('remember_token', $token)->first();
 
-        if (count($result)) {
-            return self::deserializePermission($result[0]);
+        if ($result) {
+            return self::deserializePermission($result);
         } else {
             return false;
         }
