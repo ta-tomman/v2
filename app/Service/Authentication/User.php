@@ -3,6 +3,7 @@
 namespace App\Service\Authentication;
 
 use Illuminate\Support\Facades\DB;
+use App\Service\Auth;
 
 class User
 {
@@ -66,8 +67,8 @@ class User
 
     private static function deserializePermission($user)
     {
-        $permission = json_decode($user->permission);
-        $user->permission = $permission;
+        $user->permission = Auth::deserializePermission($user->permission);
+
         return $user;
     }
 }

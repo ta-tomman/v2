@@ -23,4 +23,24 @@ class Auth
 
         return false;
     }
+
+    public static function serializePermission(array $permission)
+    {
+    }
+
+    public static function deserializePermission(string $serialized)
+    {
+        $result = [];
+        $permissions = json_decode($serialized, true);
+        if (!$permissions) {
+            return $result;
+        }
+
+        foreach($permissions as $key => $val) {
+            $className = Auth::class;
+            $constName = 'PERM_'.$val;
+            $result[$key] = constant("$className::$constName");
+        }
+        return $result;
+    }
 }
