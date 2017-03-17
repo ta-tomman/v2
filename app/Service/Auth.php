@@ -13,6 +13,10 @@ class Auth
     const PERM_WRITE_ALL     = 0b00011000;
     const PERM_FULL          = 0b11111111;
 
+    //shorthands
+    const PERM_READ          = self::PERM_READ_ALL;
+    const PERM_WRITE         = self::PERM_WRITE_ALL;
+
     public static function hasPermission(string $module, string $permission, array $available): bool
     {
         foreach ($available as $mod => $perm) {
@@ -26,21 +30,28 @@ class Auth
 
     public static function serializePermission(array $permission)
     {
+        // probably not necessary
     }
 
     public static function deserializePermission(string $serialized)
     {
         $result = [];
-        $permissions = json_decode($serialized, true);
-        if (!$permissions) {
+        $serialized = trim($serialized);
+        if (!$serialized) {
             return $result;
         }
 
-        foreach($permissions as $key => $val) {
+        $tokens = explode(',', $serialized);
+        foreach ($tokens as $token) {
+            list($key, $val) = explode(':', trim($token));
+            $key = trim($key);
+            $val = trim($val);
+
             $className = Auth::class;
-            $constName = 'PERM_'.$val;
+            $constName = 'PERM_'.strtoupper($val);
             $result[$key] = constant("$className::$constName");
         }
+
         return $result;
     }
 }
