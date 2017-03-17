@@ -11,9 +11,9 @@
 |
 */
 
-Route::get('debug/sso', function() {
-    $result = \App\Service\PortalTA\SSO::getCookie('92140917', '@12wandy');
-    echo($result);
+Route::get('debug', function() {
+    $result = \App\Service\Auth::deserializePermission('*: FULL');
+    var_dump($result);
 });
 
 /*
