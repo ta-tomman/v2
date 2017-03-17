@@ -52,8 +52,6 @@ Route::get('logout', 'Authorization\LoginController@logout');
  * Normal Routes
  */
 Route::group(['middleware' => 'authenticated'], function() {
-    Route::get('/', function () {
-        return view('welcome');
-    });
+    Route::get('/', 'HomeController@index');
 });
 
