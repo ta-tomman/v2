@@ -7,8 +7,8 @@
   <title>TOMMANv2</title>
 
   <?php $baseurl = config('app.url') ?>
-  <link href="{{ $baseurl }}/tpl/eliteadmin-modern/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-  <link href="{{ $baseurl }}/tpl/eliteadmin-modern/css/style.css" rel="stylesheet">
+  <link href="{{ $baseurl }}/tpl/eliteadmin/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="{{ $baseurl }}/tpl/eliteadmin/css/style.css" rel="stylesheet">
   <style>
     html, body {
       height: 100%;
