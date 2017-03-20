@@ -10,8 +10,12 @@ class HomeController extends Controller
     {
         $auth = $request->session()->get('auth');
         $nik = $auth->login;
-        //$permission = $auth->permission;
+        $permission = $auth->permission;
 
-        return view('home.inactive', compact('nik'));
+        if (!count($permission)) {
+            return view('home.inactive', compact('nik'));
+        }
+
+        return view('home.default');
     }
 }

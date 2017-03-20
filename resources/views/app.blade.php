@@ -16,7 +16,7 @@
   @yield('style-import')
 
   <!-- This is a Animation CSS -->
-  <link href="/tpl/eliteadmin/css/animate.css" rel="stylesheet">
+  <!--<link href="/tpl/eliteadmin/css/animate.css" rel="stylesheet">-->
   <!-- This is a Custom CSS -->
   <link href="/tpl/eliteadmin/css/style.css" rel="stylesheet">
   <!-- color CSS you can use different color css from css/colors folder -->
@@ -25,7 +25,7 @@
   @yield('style')
 
 </head>
-<body class="fix-sidebar">
+<body>
 
 <div class="preloader">
   <div class="cssload-speeding-wheel"></div>
@@ -36,20 +36,26 @@
     <div class="navbar-header"></div>
   </div>
 
-  <div class="side-mini-panel">
-    <ul class="mini-nav">
-      <div class="togglediv"><a href="javascript:void(0)" id="togglebtn"><i class="ti-menu"></i></a></div>
-    </ul>
+  <div class="navbar-default sidebar">
+    <div class="sidebar-nav navbar-collapse slimscrollsidebar active">
+      <ul id="side-menu" class="nav in">
+        <li>
+          <a href="">
+            <span class="hide-menu">MCore</span>
+          </a>
+        </li>
+      </ul>
+    </div>
   </div>
 
-  <div class="page-wrapper">
+  <div id="page-wrapper">
     <div class="container-fluid">
       @include('partial.alerts')
 
       @yield('body')
-    </div>
 
-    <footer class="footer text-center">TOMMAN &copy; Telkom Akses Banjarmasin</footer>
+      <footer class="footer text-center">TOMMAN &copy; Telkom Akses Banjarmasin</footer>
+    </div>
   </div>
 </div>
 
