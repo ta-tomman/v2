@@ -53,5 +53,9 @@ Route::get('logout', 'Authorization\LoginController@logout');
  */
 Route::group(['middleware' => 'authenticated'], function() {
     Route::get('/', 'HomeController@index');
+
+    Route::group(['prefix' => 'mcore'], function() {
+        Route::get('/', 'Mcore\MapController@index');
+    });
 });
 
