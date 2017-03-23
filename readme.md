@@ -40,9 +40,14 @@ masuk ke database yang telah dibuat
 \c ta_tomman
 ```
 
-install postgis ke database
+aktifkan PostGIS di database ini
 ```
 CREATE EXTENSION postgis;
+```
+
+aktifkan LTREE di database ini
+```
+CREATE EXTENSION ltree;
 ```
 
 keluar dari psql
@@ -50,7 +55,6 @@ keluar dari psql
 \q
 ```
 
-create db, assign user, install postgis
 
 #### 2.3.4 Install php-pgsql Extension
 ```
@@ -127,9 +131,9 @@ sudo service restart apache2
 - npm install
 - bower install
 ### 3.2 Config
-- php artisan key:generate
 - cp .env-example .env
-- chmod 775 storage,bootstrap/cache
+- php artisan key:generate
+- chmod 775 storage,bootstrap
 
 ### 3.3 Install DB
 - php artisan migrate
