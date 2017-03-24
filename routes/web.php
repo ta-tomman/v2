@@ -54,12 +54,12 @@ Route::get('logout', 'Authorization\LoginController@logout');
 Route::group(['middleware' => 'authenticated'], function() {
     Route::get('/', 'HomeController@index');
 
-    Route::group(['prefix' => 'data'], function() {
-        Route::get('workzone', 'CommonData\WorkzoneController@index');
+    Route::group(['prefix' => 'data', 'namespace' => 'CommonData'], function() {
+        Route::get('workzone', 'WorkzoneController@index');
     });
 
-    Route::group(['prefix' => 'mcore'], function() {
-        Route::get('/', 'Mcore\MapController@index');
+    Route::group(['prefix' => 'mcore', 'namespace' => 'Mcore'], function() {
+        Route::get('/', 'MapController@index');
     });
 });
 
