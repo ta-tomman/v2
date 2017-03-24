@@ -5,12 +5,21 @@
 ## 1 Install Ubuntu Server
 jangan install `LAMP`, jika diperlukan boleh install `OpenSSH Server`
 
+### 1.1 Install tools
+- sudo apt update
+- sudo apt install zip unzip git curl build-essential software-properties-common
+
 ## 2 Install Server Application
 
 ### 2.1 Apache
 
 ### 2.2 PHP7.0
-via ondrej ppa
+via `ondrej` _ppa_
+```
+sudo add-apt-repository ppa:ondrej/php
+sudo apt update
+sudo apt install php-7.0
+```
 
 ### 2.3 PostgreSQL
 
