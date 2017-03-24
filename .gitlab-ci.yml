@@ -1,4 +1,4 @@
-image: composer:latest
+image: blackpaw/docker-composer-npm
 
 cache:
   paths:
