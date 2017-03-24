@@ -1,4 +1,6 @@
 #!/bin/sh
 
-vendor/bin/phpcs --standard=PSR2 --extensions=php app/
-vendor/bin/phpunit --testdox
+./vendor/bin/phpcs --standard=PSR2 --extensions=php app/
+./vendor/bin/phpunit --testdox
+
+./node_modules/sass-lint/bin/sass-lint.js "resources/assets/sass/**/*.s+(a|c)ss" -v -q

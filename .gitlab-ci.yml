@@ -3,11 +3,12 @@ image: composer:latest
 cache:
   paths:
     - vendor/
+    - node_modules/
 
 before_script:
   - composer install
+  - npm install
 
 PHPLint:
   script:
-    - vendor/bin/phpcs --standard=PSR2 --extensions=php app/
-    - vendor/bin/phpunit --testdox
+    - ./test

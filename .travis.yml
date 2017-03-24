@@ -3,7 +3,7 @@ php: 7.0
 install:
   - phpenv config-rm xdebug.ini
   - composer install
+  - npm install
 
 script:
-  - ./vendor/bin/phpcs --standard=PSR2 --extensions=php app/
-  - ./vendor/bin/phpunit --testdox
+  - ./test
