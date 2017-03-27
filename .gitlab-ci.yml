@@ -11,4 +11,4 @@ before_script:
 
 PHPLint:
   script:
-    - ./test
+    - sh test

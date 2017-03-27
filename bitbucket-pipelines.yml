@@ -7,4 +7,4 @@ pipelines:
           script:
             - composer install
             - npm install
-            - ./test
+            - sh test
