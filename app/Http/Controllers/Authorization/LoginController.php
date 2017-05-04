@@ -48,6 +48,13 @@ class LoginController extends Controller
         }
     }
 
+    public function logout(Request $request)
+    {
+        //$request->session()->forget(self::SESSION_KEY);
+        $request->session()->flush();
+        return redirect('/');
+    }
+
     private function generateLocalUser($nik, $pass, $ssoResult, $rememberToken)
     {
         $localUser = LocalUser::getByLogin($nik);
