@@ -11,6 +11,8 @@ use App\Service\Authentication\User as LocalUser;
 
 class LoginController extends Controller
 {
+    const SESSION_KEY = 'auth';
+
     public function loginPage()
     {
         return view('login');
@@ -32,13 +34,13 @@ class LoginController extends Controller
         if ($ssoResult->success) {
             // TODO: user data via auth table and hrmista
             $authSession = $this->generateLocalUser($nik, $pass, $ssoResult, $rememberToken);
-            $request->session()->put('auth', $authSession);
+            $request->session()->put(self::SESSION_KEY, $authSession);
 
             return $this->successResponse($request, $rememberToken);
         } else {
             $localUser = LocalUser::getByLocalCredential($nik, $pass);
             if ($localUser) {
-                $request->session()->put('auth', $localUser);
+                $request->session()->put(self::SESSION_KEY, $localUser);
                 return $this->successResponse($request, $rememberToken);
             }
 
