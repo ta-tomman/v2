@@ -104,6 +104,11 @@
 {{--<script src="/tpl/eliteadmin/js/waves.js"></script>--}}
 <!-- Custom Theme JavaScript -->
 <script src="/tpl/eliteadmin/js/custom.min.js"></script>
+<script>
+  if ('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('/js/sw.js');
+  }
+</script>
 @yield('script')
 </body>
 </html>
