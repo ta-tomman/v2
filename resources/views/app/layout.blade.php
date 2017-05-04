@@ -13,7 +13,7 @@
   <!-- This is Sidebar menu CSS -->
   <link href="/tpl/eliteadmin/plugins/sidebar-nav/dist/sidebar-nav.min.css" rel="stylesheet">
 
-@yield('style-import')
+  @yield('style-import')
 
 <!-- This is a Animation CSS -->
   <!--<link href="/tpl/eliteadmin/css/animate.css" rel="stylesheet">-->
@@ -47,6 +47,25 @@
           </span>
         </a>
       </div>
+      <ul class="nav navbar-top-links navbar-right pull-right">
+        <li class="dropdown">
+          <a href="#" class="dropdown-toggle profile-pic" data-toggle="dropdown">
+            <span class="hidden-xs">
+              <!-- TODO: profile pic -->
+              <?php $authSessionKey = \App\Http\Controllers\Authorization\LoginController::SESSION_KEY ?>
+              {{ session($authSessionKey)->nama }}
+            </span>
+          </a>
+          <ul class="dropdown-menu dropdown-user">
+            <li>
+              <a href="/logout">
+                <i class="fa fa-power-off"></i>
+                <span>Logout</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
     </div>
   </div>
 

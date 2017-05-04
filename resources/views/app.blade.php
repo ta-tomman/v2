@@ -1,1 +1,1 @@
-@extends('app.'. (app('request')->isPartial?'shell':'layout'))
+@extends('app.'. (app('request')->isPartial?'partial':'layout'))
