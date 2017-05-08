@@ -21,7 +21,6 @@ self.oninstall = function(event) {
 };
 
 self.onactivate = function(event) {
-  console.log('sw:onactivate');
   var currentCacheName = CACHE_NAME;
   caches.keys().then(cacheNames => {
     return Promise.all(
@@ -34,13 +33,11 @@ self.onactivate = function(event) {
 };
 
 self.onfetch = function(event) {
-  console.log('sw:onfetch', event.request.url);
   var request = event.request;
 
   event.respondWith(
     caches.match(request).then(response => {
       if (response) {
-        console.log('[SW:CACHED]', request.url);
         return response;
       }
 
@@ -51,12 +48,10 @@ self.onfetch = function(event) {
            &&
           url.pathname.indexOf('/partial') !== 0 // partial request
         ) {
-          console.log('[SW] App Shell Redirect');
           return caches.match('/app-shell');
         }
       }
 
-      console.log('[SW:FETCH]', request.url);
       return fetch(request);
     })
   )
