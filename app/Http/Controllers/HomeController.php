@@ -18,4 +18,9 @@ class HomeController extends Controller
 
         return view('home.default');
     }
+
+    public function shell()
+    {
+        return view('shell');
+    }
 }

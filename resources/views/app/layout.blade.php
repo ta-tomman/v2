@@ -87,7 +87,7 @@
 
       @yield('body')
 
-      <footer class="footer text-center">TOMMAN &copy; Telkom Akses Banjarmasin</footer>
+      <footer class="footer text-center">TOMMAN &copy; <!--Telkom Akses Banjarmasin--></footer>
     </div>
   </div>
 </div>
@@ -106,7 +106,7 @@
 <script src="/tpl/eliteadmin/js/custom.min.js"></script>
 <script>
   if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/js/sw.js');
+      navigator.serviceWorker.register('sw.js');
   }
 </script>
 @yield('script')
