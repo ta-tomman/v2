@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
 class HomeController extends Controller
 {
@@ -22,5 +23,14 @@ class HomeController extends Controller
     public function shell()
     {
         return view('shell');
+    }
+
+    public function partial(Request $request, $path)
+    {
+        $request->isPartial = true;
+        $newReq = Request::create('/'.$path, 'GET');
+        $response = Route::dispatch($newReq);
+
+        return $response;
     }
 }

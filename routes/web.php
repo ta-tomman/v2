@@ -54,6 +54,7 @@ Route::get('logout', 'Authorization\LoginController@logout');
 Route::group(['middleware' => 'authenticated'], function() {
     Route::get('/', 'HomeController@index');
     Route::get('/app-shell', 'HomeController@shell');
+    Route::get('/partial/{path}', 'HomeController@partial')->where('path', '.*');
 
     Route::group(['prefix' => 'data', 'namespace' => 'CommonData'], function() {
         Route::get('workzone', 'WorkzoneController@index');

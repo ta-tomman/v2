@@ -1,6 +1,6 @@
 "use strict";
 
-var CACHE_NAME = 'TOMMANv2-DEBUGv1';
+var CACHE_NAME = 'DEBUG-TOMMANv2-CACHEv1';
 
 self.oninstall = function(event) {
   var urls = [
@@ -43,10 +43,10 @@ self.onfetch = function(event) {
 
       var url = new URL(request.url);
       if (url.host === this.location.host) {
-        if (
+        if ( // ignores:
           url.pathname.indexOf('.') === -1 // file with extension
            &&
-          url.pathname.indexOf('/partial') !== 0 // partial request
+          url.pathname.indexOf('/partial/') !== 0 // partial request
         ) {
           return caches.match('/app-shell');
         }
