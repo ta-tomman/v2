@@ -4,3 +4,5 @@
 ./vendor/bin/phpunit --testdox
 
 ./node_modules/sass-lint/bin/sass-lint.js "resources/assets/sass/**/*.s+(a|c)ss" -v -q
+
+./node_modules/jshint/bin/jshint resources/ --extra-ext .php --extract=always
