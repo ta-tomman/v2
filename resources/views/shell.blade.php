@@ -6,6 +6,7 @@
 
 @section('script')
   <script>
+    // TODO: cache and network
     $(function() {
       var url = '/partial' + window.location.pathname;
       $.get(
@@ -29,7 +30,7 @@
             else {
               document.body.appendChild(el);
             }
-          })
+          });
         }
       );
     });
