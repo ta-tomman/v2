@@ -1,8 +1,8 @@
-<result>
-  <body>
+<partial-result>
+  <partial-body>
     @yield('body')
-  </body>
-  <script>
+  </partial-body>
+  <partial-script>
     @yield('script')
-  </script>
-</result>
+  </partial-script>
+</partial-result>
