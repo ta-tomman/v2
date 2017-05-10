@@ -1,4 +1,6 @@
 "use strict";
+/* jshint esversion: 6 */
+/* jshint worker:true */
 
 var CACHE_NAME = 'DEBUG-TOMMANv2-CACHEv1';
 
@@ -17,7 +19,7 @@ self.oninstall = function(event) {
       .then(cache => {
         return cache.addAll(requests);
       })
-  )
+  );
 };
 
 self.onactivate = function(event) {
@@ -28,8 +30,8 @@ self.onactivate = function(event) {
         if (cacheName !== currentCacheName)
           return caches.delete(cacheName);
       })
-    )
-  })
+    );
+  });
 };
 
 self.onfetch = function(event) {
@@ -45,14 +47,26 @@ self.onfetch = function(event) {
       if (url.host === this.location.host) {
         if ( // ignores:
           url.pathname.indexOf('.') === -1 // file with extension
-           &&
-          url.pathname.indexOf('/partial/') !== 0 // partial request
+          && url.pathname.indexOf('/partial/') !== 0 // partial request
+          && url.pathname.indexOf('/login') !== 0
+          && url.pathname.indexOf('/logout') !== 0
         ) {
           return caches.match('/app-shell');
         }
       }
 
-      return fetch(request);
+      if (url.pathname.indexOf('/login') === 0 || url.pathname.indexOf('/logout') === 0) {
+        var req = new Request(request.url, {
+          method: request.method,
+          headers: request.headers,
+          mode: 'same-origin',
+          credentials: request.credentials,
+          redirect: 'manual'
+        });
+        return fetch(request);
+      }
+
+      return fetch(request, { credentials: 'same-origin' });
     })
-  )
+  );
 };
