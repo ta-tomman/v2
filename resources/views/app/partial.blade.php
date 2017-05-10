@@ -1,4 +1,10 @@
 <partial-result>
+  <partial-style-import>
+    @yield('style-import')
+  </partial-style-import>
+  <partial-style>
+    @yield('style')
+  </partial-style>
   <partial-body>
     @yield('body')
   </partial-body>

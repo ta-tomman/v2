@@ -1,2 +1,12 @@
 // override template
 @import 'tpl-override-eliteadmin';
+
+// TODO: refactor into _shell.scss?
+#shell-loading {
+  position: absolute;
+  top: 20px;
+  left: 50%;
+  background-color: red;
+  width: 100px;
+  height: 40px;
+}

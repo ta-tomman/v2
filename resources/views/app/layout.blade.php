@@ -15,10 +15,10 @@
 
   @yield('style-import')
 
-<!-- This is a Animation CSS -->
+  <!-- This is a Animation CSS -->
   <!--<link href="/tpl/eliteadmin/css/animate.css" rel="stylesheet">-->
   <!-- This is a Custom CSS -->
-  <link href="/tpl/eliteadmin/css/style.css" rel="stylesheet">
+  <link id="style-custom" href="/tpl/eliteadmin/css/style.css" rel="stylesheet">
   <!-- color CSS you can use different color css from css/colors folder -->
   <link href="/tpl/eliteadmin/css/colors/gray.css" id="theme"  rel="stylesheet">
 
