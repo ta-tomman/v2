@@ -24,24 +24,21 @@ class LoginController extends Controller
         $pass = $request->input('pass');
         $rememberUser = $request->input('remember');
 
-        $rememberToken = null;
-        if ($rememberUser) {
-            $rememberToken = md5($nik . microtime());
-        }
-
         $ssoResult = SSO::checkCredential($nik, $pass);
 
         if ($ssoResult->success) {
             // TODO: user data via auth table and hrmista
-            $authSession = $this->generateLocalUser($nik, $pass, $ssoResult, $rememberToken);
+            $authSession = $this->generateLocalUser($nik, $pass, $ssoResult, $rememberUser);
             $request->session()->put(self::SESSION_KEY, $authSession);
 
-            return $this->successResponse($request, $rememberToken);
+            return $this->successResponse($request, $authSession->rememberToken);
         } else {
             $localUser = LocalUser::getByLocalCredential($nik, $pass);
             if ($localUser) {
                 $request->session()->put(self::SESSION_KEY, $localUser);
-                return $this->successResponse($request, $rememberToken);
+                if ($rememberUser) $this->ensureLocalUserHasRememberToken($localUser);
+
+                return $this->successResponse($request, $localUser->remember_token);
             }
 
             return $this->failureResponse($request, $ssoResult);
@@ -52,10 +49,10 @@ class LoginController extends Controller
     {
         //$request->session()->forget(self::SESSION_KEY);
         $request->session()->flush();
-        return redirect('/');
+        return redirect('/login')->cookie('persistent-token', '', 0, '', '', true, true);
     }
 
-    private function generateLocalUser($nik, $pass, $ssoResult, $rememberToken)
+    private function generateLocalUser($nik, $pass, $ssoResult, $rememberUser)
     {
         $localUser = LocalUser::getByLogin($nik);
         if (!$localUser) {
@@ -65,19 +62,36 @@ class LoginController extends Controller
                 'nama'           => $ssoResult->nama,
                 'pass'           => $pass,
                 'sso_cookie'     => $ssoCookie,
-                'remember_token' => $rememberToken
+                'remember_token' => $this->generateRememberToken($nik)
             ];
 
             $insertId = LocalUser::create($data);
             $localUser = LocalUser::getById($insertId);
-        } elseif ($rememberToken) {
-            LocalUser::update($localUser->id, [
-                'remember_token' => $rememberToken
-            ]);
-            $localUser->remember_token = $rememberToken;
+        } elseif ($rememberUser) {
+            $this->ensureLocalUserHasRememberToken($localUser);
         }
 
         return $localUser;
+    }
+
+    private function ensureLocalUserHasRememberToken($localUser)
+    {
+        $token = $localUser->remember_token;
+
+        if (!$localUser->remember_token) {
+            $token = $this->generateRememberToken($localUser->login);
+            LocalUser::update($localUser->id, [
+                'remember_token' => $token
+            ]);
+            $localUser->remember_token = $token;
+        }
+
+        return $token;
+    }
+
+    private function generateRememberToken($nik)
+    {
+        return md5($nik . microtime());
     }
 
     private function successResponse(Request $request, $rememberToken)
