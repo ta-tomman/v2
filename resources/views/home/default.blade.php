@@ -6,6 +6,6 @@
   </div>
 
   <div class="white-box">
-    Meow
+    User Dashboard
   </div>
 @endsection

@@ -25,12 +25,17 @@ class HomeController extends Controller
         return view('shell');
     }
 
-    public function partial(Request $request, $path)
+    public function partial(Request $request, $path = '')
     {
         $request->isPartial = true;
         $newReq = Request::create('/'.$path, 'GET');
         $response = Route::dispatch($newReq);
 
         return $response;
+    }
+
+    public function shellTest()
+    {
+        return view('home.shell');
     }
 }

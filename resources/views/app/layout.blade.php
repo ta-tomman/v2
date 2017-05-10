@@ -29,9 +29,9 @@
 </head>
 <body>
 
-<div class="preloader">
-  <div class="cssload-speeding-wheel"></div>
-</div>
+{{--<div class="preloader">--}}
+  {{--<div class="cssload-speeding-wheel"></div>--}}
+{{--</div>--}}
 
 <div id="wrapper">
   <div class="navbar navbar-default navbar-static-top m-b-0">
@@ -75,6 +75,11 @@
         <li>
           <a href="/mcore">
             <span class="hide-menu">MCore</span>
+          </a>
+        </li>
+        <li>
+          <a href="/shell-test">
+            <span class="hide-menu">Shell Test</span>
           </a>
         </li>
       </ul>
