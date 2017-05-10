@@ -2,7 +2,9 @@
 
 @section('body')
   <div id="app-shell-placeholder">APP SHELL</div>
-  <div id="shell-loading"></div>
+  <div class="shell-loading">
+    {{-- TODO: loading animation --}}
+  </div>
 @endsection
 
 @section('script')
@@ -27,6 +29,11 @@
         request,
         { credentials: 'include' }
       ).then(function(response) {
+        var loginUrl = window.location.origin + '/login';
+        if (response.url === loginUrl) {
+            window.location.href = loginUrl;
+        }
+
         var responseModified = response.headers.get('Last-Modified');
         if (lastModified == responseModified) {
           document.getElementById('shell-loading').style.display = 'none';

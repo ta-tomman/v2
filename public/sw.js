@@ -55,6 +55,7 @@ self.onfetch = function(event) {
         }
       }
 
+      // necessary to prevent error in chrome 59, untested in firefox
       if (url.pathname.indexOf('/login') === 0 || url.pathname.indexOf('/logout') === 0) {
         var req = new Request(request.url, {
           method: request.method,
