@@ -27,7 +27,7 @@
   @yield('style')
 
 </head>
-<body>
+<body class="fix-sidebar">
 
 {{--<div class="preloader">--}}
   {{--<div class="cssload-speeding-wheel"></div>--}}
@@ -69,10 +69,10 @@
     </div>
   </div>
 
-  <div class="navbar-default sidebar">
-    <div class="sidebar-nav navbar-collapse slimscrollsidebar active">
-      <ul id="side-menu" class="nav in">
-        <li>
+  <div class="navbar-default sidebar" role="navigation">
+    <div class="sidebar-nav navbar-collapse slimscrollsidebar">
+      <ul class="nav" id="side-menu">
+      <li>
           <a href="/mcore">
             <span class="hide-menu">MCore</span>
           </a>
@@ -111,7 +111,7 @@
 <script src="/tpl/eliteadmin/js/custom.min.js"></script>
 <script>
   if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('sw.js');
+      //navigator.serviceWorker.register('sw.js');
   }
 </script>
 @yield('script')
