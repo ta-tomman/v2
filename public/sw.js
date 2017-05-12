@@ -2,11 +2,18 @@
 /* jshint esversion: 6 */
 /* jshint worker:true */
 
-var CACHE_NAME = 'DEBUG-TOMMANv2-CACHEv1';
+var CACHE_NAME = 'SWv1';
 
 self.oninstall = function(event) {
   var urls = [
-    '/app-shell'
+    '/app-shell',
+
+    '/tpl/eliteadmin/bootstrap/dist/css/bootstrap.min.css',
+    '/tpl/eliteadmin/plugins/sidebar-nav/dist/sidebar-nav.min.css',
+    '/tpl/eliteadmin/css/style.css',
+    '/tpl/eliteadmin/css/colors/gray.css',
+
+    '/css/app.css'
   ];
 
   var requests = urls.map(url => {
