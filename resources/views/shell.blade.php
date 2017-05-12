@@ -11,19 +11,47 @@
   <script>
     // TODO: cache and network
     $(function() {
-      var CACHE_NAME = 'DEBUG-TOMMANv2-CACHEv1';
+      var CACHE_NAME = 'PAGEv1';
 
       var url = '/partial' + window.location.pathname;
       var request = new Request(url);
       var lastModified = false;
       var shellBodyEl = document.getElementById('app-shell-placeholder');
 
+      var updatedFromNetwork = false;
+      var updateDomFromResponse = function(responseBody) {
+        var $dom = $(responseBody);
+
+        var $importStyles = $dom.find('partial-style-import').children();
+        var refStyleEl = document.getElementById('style-custom');
+        var headEl = refStyleEl.parentNode;
+        $importStyles.each(function(index, el) {
+          headEl.insertBefore(el, refStyleEl);
+        });
+
+        var $styles = $dom.find('partial-style').children();
+        $styles.each(function(index, el) {
+          headEl.appendChild(el);
+        });
+
+        var $body = $dom.find('partial-body');
+        shellBodyEl.innerHTML = $body.html();
+
+        var $scripts = $dom.find('partial-script').children();
+        $scripts.each(function(index, el) {
+          document.body.appendChild(el);
+        });
+
+        document.getElementById('shell-loading').style.display = 'none';
+      };
+
       caches.match(request).then(function(response) {
         if (!response) return;
 
         lastModified = response.headers.get('Last-Modified');
         response.text().then(function(responseBody) {
-          shellBodyEl.innerHTML = responseBody;
+          if (!updatedFromNetwork)
+            updateDomFromResponse(responseBody);
         });
       });
 
@@ -48,29 +76,9 @@
         });
 
         response.text().then(function(body) {
-          var $dom = $(body);
-
-          var $importStyles = $dom.find('partial-style-import').children();
-          var refStyleEl = document.getElementById('style-custom');
-          var headEl = refStyleEl.parentNode;
-          $importStyles.each(function(index, el) {
-            headEl.insertBefore(el, refStyleEl);
-          });
-
-          var $styles = $dom.find('partial-style').children();
-          $styles.each(function(index, el) {
-            headEl.appendChild(el);
-          });
-
-          var $body = $dom.find('partial-body');
-          shellBodyEl.innerHTML = $body.html();
-
-          var $scripts = $dom.find('partial-script').children();
-          $scripts.each(function(index, el) {
-            document.body.appendChild(el);
-          });
-
-          document.getElementById('shell-loading').style.display = 'none';
+          updateDomFromResponse(body);
+          updatedFromNetwork = true;
+          console.log('updatedFromNetwork', updatedFromNetwork);
         });
       }).catch(function(error) {
         console.log('fetch:err', error);
