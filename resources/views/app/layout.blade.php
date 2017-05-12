@@ -40,10 +40,10 @@
       <div class="top-left-part">
         <a href="/" class="logo">
           <b>
-            <img src="/img/logo.png" alt="TA">
+            {{--<img src="/img/logo.png" height="52" alt="TA">--}}
           </b>
           <span class="hidden-xs">
-            <img src="/img/tomman.png" alt="TOMMAN">
+            {{--<img src="/img/tomman.png" height="52" alt="TOMMAN">--}}
           </span>
         </a>
       </div>
@@ -111,7 +111,7 @@
 <script src="/tpl/eliteadmin/js/custom.min.js"></script>
 <script>
   if ('serviceWorker' in navigator) {
-      //navigator.serviceWorker.register('sw.js');
+      navigator.serviceWorker.register('sw.js');
   }
 </script>
 @yield('script')

@@ -9,6 +9,7 @@ class HomeController extends Controller
 {
     public function index(Request $request)
     {
+        // TODO: cache & last modified
         $auth = $request->session()->get('auth');
         $nik = $auth->login;
         $permission = $auth->permission;
