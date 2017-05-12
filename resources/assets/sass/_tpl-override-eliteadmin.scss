@@ -1,8 +1,11 @@
 
 
 @media (min-width: 768px) {
-  .top-left-part {
-    width: 310px;
+  .fix-sidebar {
+    .top-left-part {
+      width: 340px;
+      padding-left: 20px;
+    }
   }
 }
 

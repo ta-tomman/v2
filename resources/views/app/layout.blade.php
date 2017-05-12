@@ -72,7 +72,7 @@
   <div class="navbar-default sidebar" role="navigation">
     <div class="sidebar-nav navbar-collapse slimscrollsidebar">
       <ul class="nav" id="side-menu">
-      <li>
+        <li>
           <a href="/mcore">
             <span class="hide-menu">MCore</span>
           </a>
