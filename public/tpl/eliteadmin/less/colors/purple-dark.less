@@ -10,8 +10,8 @@
 @sidebar-text:#a6acbc;
 @themecolor:#ab8ce4;
 @dark-themecolor:#4F5467;
-@sidebar-dropdown:#393e4f;
-@sidebar-active:#444859;
+
+
 
 
 body{
@@ -19,8 +19,12 @@ body{
 }
 
 /*Top Header Part*/
-
-
+.top-left-part{
+  background:rgba(0, 0, 0, 0.1);
+}
+.logo b{
+   
+}
 .logo i{ color:@white;}
 
 .navbar-header{ 
@@ -29,6 +33,7 @@ body{
 .navbar-top-links > li > a{
     color:@white;
 }
+
 
 
 /*Right panel*/
@@ -62,14 +67,12 @@ body{
 }
 
 #side-menu > li > a {
-    border-color:@sidebar;
     &:hover, &:focus{
         background:rgba(0, 0, 0, 0.07);
-        border-color:@sidebar;  
     }
    &.active {
-            border-bottom:2px solid @themecolor;
-            
+            border-left:3px solid @themecolor;
+            color:@white;
             
             font-weight:500;
         i{
@@ -78,13 +81,10 @@ body{
         }
 
 }
-.sidebar #side-menu > li:hover a{
-      background:@sidebar-dropdown;
-   }
 #side-menu ul > li > a {
     &:hover{
         color:@themecolor;
-        background:none;
+        
     }
     &.active{
      color:@white;
@@ -96,17 +96,16 @@ body{
           color:@themecolor;
         }
   }
-#side-menu .nav-second-level li:hover{
-      >a {color:@themecolor;}
-}
-#side-menu .nav-second-level.two-li{
-  background:@sidebar-dropdown;
-}       
+.content-wrapper .sidebar .nav-second-level{
+  li{
+    background:#444859;
+  }
+}  
 @media(min-width:768px) {
   .content-wrapper { 
-       #side-menu li a.active, #side-menu ul, .sidebar #side-menu > li:hover{
-              background:@sidebar-active;
-         }
+       #side-menu ul, .sidebar #side-menu > li:hover, .sidebar .nav-second-level > li > a{
+              background:#444859;
+         }  
 
    }     
 }

@@ -18,7 +18,7 @@ jQuery('#world-map-marker').vectorMap(
     color: '#e6e6e6',
     regionStyle : {
         initial : {
-          fill : '#e6e6e6'
+          fill : '#e4ecef'
         }
       },
 
@@ -61,7 +61,7 @@ jQuery('#world-map-marker').vectorMap(
       series: {
                     regions: [{
                         values: mapData,
-                        scale: ["#939796", "#838987"],
+                        scale: ["#03a9f3", "#02a7f1"],
                         normalizeFunction: 'polynomial'
                     }]
                 },
@@ -187,34 +187,33 @@ $(document).ready(function() {
             type: 'line',
             width: '100%',
             height: '50',
-            lineColor: '#99d683',
-            fillColor: '#99d683',
-            maxSpotColor: '#99d683',
+            lineColor: '#fb9678',
+            fillColor: '#fb9678',
+            maxSpotColor: '#fb9678',
             highlightLineColor: 'rgba(0, 0, 0, 0.2)',
-            highlightSpotColor: '#99d683'
+            highlightSpotColor: '#fb9678'
         });
         $("#sparkline9").sparkline([0,2,8,6,8,5,6,4,8,6,6,2 ], {
             type: 'line',
             width: '100%',
             height: '50',
-            lineColor: '#13dafe',
-            fillColor: '#13dafe',
-            minSpotColor:'#13dafe',
-            maxSpotColor: '#13dafe',
+            lineColor: '#01c0c8',
+            fillColor: '#01c0c8',
+            minSpotColor:'#01c0c8',
+            maxSpotColor: '#01c0c8',
             highlightLineColor: 'rgba(0, 0, 0, 0.2)',
-            highlightSpotColor: '#13dafe'
+            highlightSpotColor: '#01c0c8'
         });
         $("#sparkline10").sparkline([2,4,4,6,8,5,6,4,8,6,6,2], {
             type: 'line',
             width: '100%',
             height: '50',
-            lineColor: '#ffdb4a',
-            fillColor: '#ffdb4a',
-            maxSpotColor: '#ffdb4a',
+            lineColor: '#ab8ce4',
+            fillColor: '#ab8ce4',
+            maxSpotColor: '#ab8ce4',
             highlightLineColor: 'rgba(0, 0, 0, 0.2)',
-            highlightSpotColor: '#ffdb4a'
-        });
-       
+            highlightSpotColor: '#ab8ce4'
+        });       
    }
     var sparkResize;
  

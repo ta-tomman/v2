@@ -17,7 +17,12 @@ body{
 }
 
 /*Top Header Part*/
-
+.top-left-part{
+  background:rgba(0, 0, 0, 0.2);
+}
+.logo b{
+   
+}
 .logo i{ color:@white;}
 
 .navbar-header{ 
@@ -58,17 +63,13 @@ body{
     color:@sidebar-text;
   border-left:0px solid @sidebar;
 }
-.nav-second-level > li > a{
-  &:hover, &:focus{
-        background-color:@extralight!important;
-    }
-}
+
 #side-menu > li > a {
     &:hover, &:focus{
-        background-color:@extralight!important;
+        background:rgba(0, 0, 0, 0.03);
     }
    &.active {
-            border-bottom:2px solid @themecolor;
+            border-left:3px solid @themecolor;
             color:@dark;
             
             font-weight:500;
@@ -81,7 +82,7 @@ body{
 #side-menu ul > li > a {
     &:hover{
         color:@themecolor;
-        background:none;
+        
     }
     &.active{
      color:@dark;
@@ -95,9 +96,6 @@ body{
   }
 .fix-sidebar .top-left-part{
   background:#4F5467;
-}
-#side-menu .nav-second-level li:hover{
-      >a {color:@themecolor;}
 }
 /*themecolor*/
 

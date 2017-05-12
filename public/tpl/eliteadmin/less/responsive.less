@@ -26,7 +26,7 @@
 
     #page-wrapper {
         position: inherit;
-        margin: 0px;
+        margin: 0px 0 0px 220px;
     }
     .navbar-default{ 
         position:relative; 
@@ -35,40 +35,106 @@
     }
     .fix-header{
       .navbar-static-top{ 
-        position:fixed;
-        max-width:1400px; 
+        position:fixed; 
         }
-      
-      .sidebar{
-        padding-top:60px;
-      }
+      #page-wrapper {
+          margin-top:60px;
+      }  
     }
     .sidebar {
         z-index: 10;
-        position: relative;
-        width: 100%;
+        position: absolute;
+        width: 220px;
+        padding-top:60px;
+        height:100%;
+        
     }
-    .sidebar .nav-second-level{
-      box-shadow:0 10px 30px rgba(0,0,0,0.1);
+
+    /*If body has fix sidebar class*/
+    .fix-sidebar{
+        .sidebar {
+            position:fixed;
+            overflow:hidden;
+            
+        }
+        .top-left-part{
+            position:fixed;
+            width:220px;
+            
+        }  
+        .navbar-left{
+          margin-left:220px;
+          }
+          
     }
-   .sidebar #side-menu > li:hover a{
-      background:@extralight;
+   .footer{
+    left:220px;
    }
-   #wrapper.fix-top {
-     .sidebar{
-        position:fixed;
-        max-width:1400px;
-        top:0px;
-        transition:0.5s ease-in;
-      }
-      #page-wrapper{
-          padding-top:115px;
-      }
-
-   }
-
+   
    /*If body has content-wrapper*/
-    
+    .content-wrapper { 
+        #page-wrapper {
+            margin-left:60px;
+        }
+        .navbar-left{
+              margin-left:0px;
+          }
+        .footer{left:60px;}  
+        .sidebar{
+            width:60px;
+           
+           .hide-menu{
+               display:none;
+               width:180px;
+               left:60px;
+           }
+           .sidebar-nav{
+              position:absolute;
+              overflow:hidden;
+             .nav-second-level{
+                position:absolute;
+                z-index:999999;
+              } 
+            } 
+           .nav-small-cap, li span span{
+                display:none;
+           }
+          
+           #side-menu > li:hover{
+                width:300px;
+                background:@extralight;
+
+           }
+           li:hover .hide-menu{
+            display:inline;
+           }
+           #side-menu > li > a{
+            padding:15px 17px 15px 20px;
+           }
+          
+           
+           li:hover .nav-second-level.in, li:hover .nav-second-level, li:hover .nav-second-level.collapse li{
+            display:block;
+            
+           }
+           .nav-second-level{
+                position: absolute;
+                left: 60px;
+                background: @extralight;
+                width: 240px;
+                opacity:1;
+                padding-bottom:20px;
+                display:none;
+                li{
+                  background:@extralight;
+                }
+            }   
+        }
+        .top-left-part{
+            width:60px;
+            
+        }
+    }
     .navbar-top-links .dropdown-messages,
     .navbar-top-links .dropdown-tasks,
     .navbar-top-links .dropdown-alerts {
@@ -81,7 +147,21 @@
   margin-top:-62px;
   float:right;
 }
-
+.fix-sidebar.content-wrapper, .content-wrapper.fix-sidebar{
+  .navbar-left{
+              margin-left:60px!important;
+          }
+   .sidebar{
+      position:fixed;
+      .sidebar-nav{
+        position:absolute;
+         .nav-second-level{
+            position:absolute;
+            z-index:99999;
+          } 
+        }        
+     }        
+}
 
 }
 
@@ -121,7 +201,7 @@
         left: 40px;
     }
 
-   ul.timeline > li > .timeline-panel {
+    ul.timeline > li > .timeline-panel {
         width: ~"calc(100% - 90px)";
         width: ~"calc(100% - 90px)";
         width: ~"calc(100% - 90px)";
@@ -150,12 +230,11 @@
         border-right-width: 14px;
         border-left-width: 0;
     }
-
    .wizard-steps > li{
       display:block;
    }
    .dropdown .mailbox, .dropdown .dropdown-tasks {
-      left:-94px;
+      left:-100px; 
     }
     
     /***** Start Update 1.5 *****/
@@ -170,6 +249,7 @@
       }
       .sidebar{
         position:fixed;
+        
         height:350px;
         top:60px;
         z-index:100;
@@ -211,17 +291,18 @@
         position: relative;
     }
 }
+
 @media(max-width:480px) {
 .vtabs{
-.tabs-vertical{
-      width:auto;
-      }
-}
+    .tabs-vertical{
+          width:auto;
+          }
+  }
 .stat-item{padding-right:0px;}
 .login-box{
   width:100%;
-}
-    .pro-content .pro-list-details {
+  }
+.pro-content .pro-list-details {
         height: 100px;
         border-right: none;
     }
@@ -236,5 +317,5 @@
     }
     .pro-agent .agent-name {
         padding: 2px 0 10px 15px;
-    }
+    } 
 }

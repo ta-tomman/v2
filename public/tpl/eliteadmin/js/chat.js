@@ -7,10 +7,10 @@ $('.chat-left-inner > .chatonline').slimScroll({
 });
  $(function(){
             $(window).load(function(){ // On load
-                $('.chat-list').css({'height':(($(window).height())-470)+'px'});
+                $('.chat-list').css({'height':(($(window).height())-420)+'px'});
             });
             $(window).resize(function(){ // On resize
-                $('.chat-list').css({'height':(($(window).height())-470)+'px'});
+                $('.chat-list').css({'height':(($(window).height())-420)+'px'});
             });
     });
 

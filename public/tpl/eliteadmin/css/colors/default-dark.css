@@ -1,5 +1,3 @@
-@import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,500,600,700,800);
-@import url(https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900);
 @import url(https://fonts.googleapis.com/css?family=Poppins:400,500,300,600,700);
 /*Theme Colors*/
 /*bootstrap Color*/
@@ -48,11 +46,14 @@ body {
   background: #4F5467;
 }
 /*Top Header Part*/
+.top-left-part {
+  background: rgba(0, 0, 0, 0.3);
+}
 .logo i {
   color: #ffffff;
 }
 .navbar-header {
-  background: #fb9678;
+  background: #4F5467;
 }
 .navbar-top-links > li > a {
   color: #ffffff;
@@ -80,16 +81,12 @@ body {
   color: #a6acbc;
   border-left: 0px solid #4F5467;
 }
-#side-menu > li > a {
-  border-color: #4F5467;
-}
 #side-menu > li > a:hover,
 #side-menu > li > a:focus {
   background: rgba(0, 0, 0, 0.07);
-  border-color: #4F5467;
 }
 #side-menu > li > a.active {
-  border-bottom: 2px solid #fb9678;
+  border-left: 3px solid #fb9678;
   color: #ffffff;
   font-weight: 500;
 }
@@ -98,28 +95,21 @@ body {
 }
 #side-menu ul > li > a:hover {
   color: #fb9678;
-  background: none;
 }
 #side-menu ul > li > a.active {
   color: #ffffff;
   font-weight: 500;
 }
-.sidebar #side-menu > li:hover a {
-  background: #393e4f;
-}
 .sidebar #side-menu .user-pro .nav-second-level a:hover {
   color: #fb9678;
 }
-#side-menu .nav-second-level li:hover > a {
-  color: #fb9678;
-}
-#side-menu .nav-second-level.two-li {
-  background: #393e4f;
+.content-wrapper .sidebar .nav-second-level li {
+  background: #444859;
 }
 @media (min-width: 768px) {
-  .content-wrapper #side-menu li a.active,
   .content-wrapper #side-menu ul,
-  .content-wrapper .sidebar #side-menu > li:hover {
+  .content-wrapper .sidebar #side-menu > li:hover,
+  .content-wrapper .sidebar .nav-second-level > li > a {
     background: #444859;
   }
 }
