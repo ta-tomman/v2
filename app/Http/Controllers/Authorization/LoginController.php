@@ -36,7 +36,9 @@ class LoginController extends Controller
             $localUser = LocalUser::getByLocalCredential($nik, $pass);
             if ($localUser) {
                 $request->session()->put(self::SESSION_KEY, $localUser);
-                if ($rememberUser) $this->ensureLocalUserHasRememberToken($localUser);
+                if ($rememberUser) {
+                    $this->ensureLocalUserHasRememberToken($localUser);
+                }
 
                 return $this->successResponse($request, $localUser->remember_token);
             }
