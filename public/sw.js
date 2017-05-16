@@ -2,21 +2,22 @@
 /* jshint esversion: 6 */
 /* jshint worker:true */
 
-var CACHE_NAME = 'SWv1';
+const CACHE_NAME = 'SWv1';
 
 self.oninstall = function(event) {
-  var urls = [
+  let urls = [
     '/app-shell',
 
-    '/tpl/eliteadmin/bootstrap/dist/css/bootstrap.min.css',
-    '/tpl/eliteadmin/plugins/sidebar-nav/dist/sidebar-nav.min.css',
-    '/tpl/eliteadmin/css/style.css',
-    '/tpl/eliteadmin/css/colors/gray.css',
+    '/css/vendor.css',
+    '/tpl/eliteadmin/css/eliteadmin.css',
+    '/css/app.css',
 
-    '/css/app.css'
+    '/tpl/eliteadmin/js/eliteadmin.js',
+
+    '/tpl/eliteadmin/less/icons/themify-icons/fonts/themify.woff?-fvbane'
   ];
 
-  var requests = urls.map(url => {
+  let requests = urls.map(url => {
     return new Request(url, { credentials: 'include' });
   });
 
@@ -30,7 +31,7 @@ self.oninstall = function(event) {
 };
 
 self.onactivate = function(event) {
-  var currentCacheName = CACHE_NAME;
+  let currentCacheName = CACHE_NAME;
   caches.keys().then(cacheNames => {
     return Promise.all(
       cacheNames.map(cacheName => {
@@ -42,7 +43,17 @@ self.onactivate = function(event) {
 };
 
 self.onfetch = function(event) {
-  var request = event.request;
+  let request = event.request;
+  // necessary to prevent redirect error in chrome 59, untested in firefox
+  if (request.method == 'GET') {
+    request = new Request(request.url, {
+      method: 'GET',
+      headers: request.headers,
+      mode: request.mode == 'navigate' ? 'cors' : request.mode,
+      credentials: request.credentials,
+      redirect: request.redirect
+    });
+  }
 
   event.respondWith(
     caches.match(request).then(response => {
@@ -50,28 +61,16 @@ self.onfetch = function(event) {
         return response;
       }
 
-      var url = new URL(request.url);
+      let url = new URL(request.url);
       if (url.host === this.location.host) {
         if ( // ignores:
           url.pathname.indexOf('.') === -1 // file with extension
-          && url.pathname.indexOf('/partial/') !== 0 // partial request
+          && url.pathname.indexOf('/partial/') !== 0
           && url.pathname.indexOf('/login') !== 0
           && url.pathname.indexOf('/logout') !== 0
         ) {
           return caches.match('/app-shell');
         }
-      }
-
-      // necessary to prevent error in chrome 59, untested in firefox
-      if (url.pathname.indexOf('/login') === 0 || url.pathname.indexOf('/logout') === 0) {
-        var req = new Request(request.url, {
-          method: request.method,
-          headers: request.headers,
-          mode: 'same-origin',
-          credentials: request.credentials,
-          redirect: 'manual'
-        });
-        return fetch(request);
       }
 
       return fetch(request, { credentials: 'same-origin' });

@@ -23,7 +23,7 @@
         var $dom = $(responseBody);
 
         var $importStyles = $dom.find('partial-style-import').children();
-        var refStyleEl = document.getElementById('style-custom');
+        var refStyleEl = document.getElementById('style-tpl');
         var headEl = refStyleEl.parentNode;
         $importStyles.each(function(index, el) {
           headEl.insertBefore(el, refStyleEl);
@@ -62,7 +62,7 @@
         var resp = response.clone();
         var loginUrl = window.location.origin + '/login';
         if (response.url === loginUrl) {
-            window.location.href = loginUrl;
+          window.location.href = loginUrl;
         }
 
         var responseModified = response.headers.get('Last-Modified');
