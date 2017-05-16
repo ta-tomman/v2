@@ -1,12 +1,12 @@
 "use strict";
 /* jshint esversion: 6 */
-/* jshint worker:true */
+/* jshint worker: true */
 
 const CACHE_NAME = 'SWv1';
 
 self.oninstall = function(event) {
   let urls = [
-    '/app-shell',
+    //'/app-shell',
 
     '/css/vendor.css',
     '/tpl/eliteadmin/css/eliteadmin.css',
@@ -18,7 +18,7 @@ self.oninstall = function(event) {
   ];
 
   let requests = urls.map(url => {
-    return new Request(url, { credentials: 'include' });
+    return new Request(url);
   });
 
   event.waitUntil(
@@ -63,12 +63,19 @@ self.onfetch = function(event) {
 
       let url = new URL(request.url);
       if (url.host === this.location.host) {
+        // TODO: destroy app-shell on logout
+        if (url.pathname === '/logout') {
+          cache.delete(new Request('/app-shell'));
+        }
         if ( // ignores:
           url.pathname.indexOf('.') === -1 // file with extension
           && url.pathname.indexOf('/partial/') !== 0
           && url.pathname.indexOf('/login') !== 0
           && url.pathname.indexOf('/logout') !== 0
         ) {
+          // TODO: (re)construct app-shell
+          // if response contains custom authenticated header, (re)construct app-shell
+          // otherwise respond with redirect to login
           return caches.match('/app-shell');
         }
       }

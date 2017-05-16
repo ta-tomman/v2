@@ -9,13 +9,13 @@
 
 @section('script')
   <script>
-    // TODO: cache and network
+    // TODO: cache and network via last-modified
     $(function() {
       var CACHE_NAME = 'PAGEv1';
 
       var url = '/partial' + window.location.pathname;
       var request = new Request(url);
-      var lastModified = false;
+      var cacheModified = false;
       var shellBodyEl = document.getElementById('app-shell-placeholder');
 
       var updatedFromNetwork = false;
@@ -48,13 +48,14 @@
       caches.match(request).then(function(response) {
         if (!response) return;
 
-        lastModified = response.headers.get('Last-Modified');
+        cacheModified = response.headers.get('Last-Modified');
         response.text().then(function(responseBody) {
           if (!updatedFromNetwork)
             updateDomFromResponse(responseBody);
         });
       });
 
+      // TODO: error handling (especially offline)
       fetch(
         request,
         { credentials: 'include' }
@@ -66,7 +67,7 @@
         }
 
         var responseModified = response.headers.get('Last-Modified');
-        if (lastModified == responseModified) {
+        if (cacheModified == responseModified) {
           document.getElementById('shell-loading').style.display = 'none';
           return;
         }
@@ -83,33 +84,6 @@
       }).catch(function(error) {
         console.log('fetch:err', error);
       });
-
-      /*$.get(
-        url,
-        function(response) {
-          var $dom = $(response);
-
-          var $importStyles = $dom.find('partial-style-import').children();
-          var refStyleEl = document.getElementById('style-custom');
-          var headEl = refStyleEl.parentNode;
-          $importStyles.each(function(index, el) {
-            headEl.insertBefore(el, refStyleEl);
-          });
-
-          var $styles = $dom.find('partial-style').children();
-          $styles.each(function(index, el) {
-              headEl.appendChild(el);
-          });
-
-          var $body = $dom.find('partial-body');
-          shellBodyEl.innerHTML = $body.html();
-
-          var $scripts = $dom.find('partial-script').children();
-          $scripts.each(function(index, el) {
-            document.body.appendChild(el);
-          });
-        }
-      );*/
     });
   </script>
 @endsection
