@@ -18,6 +18,7 @@ class AuthUser extends Migration
                 id              serial PRIMARY KEY,
                 is_local        boolean DEFAULT FALSE,
                 login           text NOT NULL UNIQUE CHECK (login <> ''),
+                type            smallint NOT NULL DEFAULT 0,
                 nama            text NOT NULL CHECK (nama <> ''),
                 pass            text NOT NULL,
                 remember_token  text,
