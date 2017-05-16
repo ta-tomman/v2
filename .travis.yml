@@ -1,8 +1,10 @@
 language: php
 php: 7.0
+
 install:
   - phpenv config-rm xdebug.ini
   - composer install
+  - nvm install node
   - npm install
 
 script:
